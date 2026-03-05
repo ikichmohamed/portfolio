@@ -375,7 +375,7 @@ AVAILABILITY: Open to new opportunities.
 
 Answer warmly, concisely, and professionally. Keep answers under 3 sentences unless listing details.`;
 
-// Chat history for multi-turn context
+// Chat history — system prompt as first message
 let history = [{ role: 'system', content: SYSTEM }];
 
 let chatOpen = false;
@@ -394,12 +394,17 @@ async function sendMsg(){
   history.push({ role: 'user', content: q });
   const typing = addMsg('Thinking...', 'bot typing');
   try {
-    const resp = await puter.ai.chat(history, { model: 'claude-sonnet-4-5' });
-    const reply = resp?.message?.content?.[0]?.text || resp?.text || 'Sorry, I had trouble answering that.';
+    const resp = await puter.ai.chat(history, { model: 'claude-sonnet-4' });
+    // Extract text from response
+    let reply = 'Sorry, I had trouble answering that.';
+    if (resp?.message?.content?.[0]?.text) reply = resp.message.content[0].text;
+    else if (typeof resp?.message?.content === 'string') reply = resp.message.content;
+    else if (resp?.text) reply = resp.text;
     history.push({ role: 'assistant', content: reply });
     typing.remove();
     addMsg(reply, 'bot');
   } catch(e) {
+    console.error('Puter AI error:', e);
     typing.remove();
     addMsg('Oops! Something went wrong. Try again?', 'bot');
   }
