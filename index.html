@@ -12,12 +12,14 @@
   }
   html{scroll-behavior:smooth;}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
+
   nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
   .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
   .logo{font-size:1.2rem;font-weight:700;color:var(--blue);letter-spacing:1px;}
   .nav-links{display:flex;gap:2rem;list-style:none;}
   .nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:.2s;}
   .nav-links a:hover{color:var(--blue);}
+
   #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,165,233,.18),transparent);}
   .hero-content{position:relative;max-width:750px;}
@@ -32,11 +34,13 @@
   .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
   .hero-langs{display:flex;gap:.75rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
   .lang-pill{background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);font-size:.78rem;padding:.3rem .8rem;border-radius:99px;}
+
   section{padding:6rem 2rem;}
   .container{max-width:1100px;margin:auto;}
   .section-label{color:var(--blue);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;}
   .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:.75rem;}
   .section-sub{color:var(--gray);font-size:1rem;max-width:560px;line-height:1.7;margin-bottom:3rem;}
+
   #about{background:var(--dark2);}
   .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
   .about-avatar{width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:5rem;max-width:280px;}
@@ -44,6 +48,7 @@
   .stat{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;}
   .stat-num{font-size:1.8rem;font-weight:800;color:var(--blue);}
   .stat-label{font-size:.75rem;color:var(--gray);margin-top:.2rem;}
+
   #experience{background:var(--dark);}
   .timeline{position:relative;padding-left:2rem;}
   .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),transparent);}
@@ -59,6 +64,7 @@
   .exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
   .exp-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
   .tag{font-size:.72rem;background:rgba(14,165,233,.12);color:var(--blue2);padding:.2rem .6rem;border-radius:99px;}
+
   #skills{background:var(--dark2);}
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
   .skill-card{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:1.5rem;}
@@ -68,6 +74,7 @@
   .skill-cat{font-size:.75rem;color:var(--gray);}
   .bar-wrap{background:var(--dark3);border-radius:99px;height:6px;overflow:hidden;}
   .bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0;transition:width 1.2s ease;}
+
   #education{background:var(--dark);}
   .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
   .edu-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.2s;}
@@ -77,6 +84,7 @@
   .edu-school{color:var(--blue);font-size:.9rem;font-weight:600;margin-bottom:.3rem;}
   .edu-period{font-size:.8rem;color:var(--gray);}
   .edu-location{font-size:.8rem;color:var(--gray);}
+
   #contact{background:var(--dark2);}
   .contact-box{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
   .contact-info p{color:var(--gray);line-height:1.8;margin-bottom:2rem;}
@@ -88,7 +96,9 @@
   .form-group input,.form-group textarea{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;color:var(--white);font-size:.9rem;outline:none;transition:.2s;font-family:inherit;}
   .form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
   .form-group textarea{resize:vertical;min-height:100px;}
+
   footer{background:var(--dark2);border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--gray);font-size:.85rem;}
+
   #chat-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;width:56px;height:56px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(14,165,233,.4);transition:.2s;}
   #chat-btn:hover{background:var(--blue2);transform:scale(1.08);}
   #chat-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:200;width:360px;max-height:520px;background:var(--dark2);border:1px solid var(--border);border-radius:20px;display:flex;flex-direction:column;overflow:hidden;transform:scale(.9) translateY(20px);opacity:0;pointer-events:none;transition:.25s;box-shadow:0 8px 40px rgba(0,0,0,.5);}
@@ -109,6 +119,7 @@
   .chat-foot input:focus{border-color:var(--blue);}
   .chat-foot button{background:var(--blue);border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;}
   .chat-foot button:hover{background:var(--blue2);}
+
   @media(max-width:700px){
     .about-grid,.contact-box{grid-template-columns:1fr;}
     #chat-panel{width:calc(100vw - 2rem);right:1rem;}
@@ -117,6 +128,7 @@
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-inner">
     <div class="logo">MI/</div>
@@ -129,6 +141,8 @@
     </ul>
   </div>
 </nav>
+
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -145,6 +159,8 @@
     </div>
   </div>
 </section>
+
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
@@ -168,6 +184,8 @@
     </div>
   </div>
 </section>
+
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
     <p class="section-label">Career</p>
@@ -185,12 +203,12 @@
         <ul class="exp-bullets">
           <li>Led the implementation of a risk assessment model for TangerMed, aligning with client needs for thorough risk management requirements.</li>
           <li>Supported CDG in migrating from HOPEX V4 to HOPEX Aquila, focusing on ISO compliance with close stakeholder collaboration.</li>
-          <li>Customized HOPEX Risk Management & Compliance solutions for SCR, managing scope and client meetings.</li>
-          <li>Developed automated Word report generation from HOPEX for Al Omrane using the Aspose Java library.</li>
-          <li>Built comparative business process reports for ICUBE combining VBScript + Java/HTML/CSS for dynamic reporting.</li>
-          <li>Customized HOPEX BPA, Risk Management, and Internal Controls solutions for INWI.</li>
+          <li>Customized HOPEX Risk Management & Compliance solutions for SCR, managing scope and client meetings to deliver tailored outcomes.</li>
+          <li>Developed automated Word report generation from the HOPEX platform for Al Omrane using the Aspose Java library.</li>
+          <li>Built a comparative business process report for ICUBE combining VBScript for data extraction with Java, HTML, and CSS for dynamic reporting.</li>
+          <li>Customized HOPEX Business Process Analysis, Risk Management, and Internal Control solutions for INWI.</li>
           <li>Modeled end-to-end business processes for OCP using HOPEX in compliance with BPMN standards.</li>
-          <li>Led business process modeling for AMDIE and managed migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
+          <li>Led business process modeling for AMDIE and managed successful migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
         </ul>
         <div class="exp-tags">
           <span class="tag">Java</span><span class="tag">HOPEX</span><span class="tag">VBScript</span>
@@ -220,33 +238,57 @@
     </div>
   </div>
 </section>
+
+<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <p class="section-label">Expertise</p>
     <h2 class="section-title">Skills & Technologies</h2>
-    <p class="section-sub">A diverse toolkit spanning enterprise architecture, backend & frontend development, and cloud infrastructure.</p>
+    <p class="section-sub">A diverse toolkit spanning enterprise architecture platforms, backend & frontend development, and cloud infrastructure.</p>
     <div class="skills-grid" id="skillsGrid"></div>
   </div>
 </section>
+
+<!-- EDUCATION -->
 <section id="education">
   <div class="container">
     <p class="section-label">Academic Background</p>
     <h2 class="section-title">Education</h2>
-    <p class="section-sub">Rigorous engineering formation across France and Morocco's top institutions.</p>
+    <p class="section-sub">Rigorous engineering formation across some of France and Morocco's top institutions.</p>
     <div class="edu-grid">
-      <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-degree">Engineer's Degree — Computer Science & Telecommunications</div><div class="edu-school">INP Toulouse – ENSEEIHT</div><div class="edu-period">2020 – 2023</div><div class="edu-location">📍 Toulouse, France</div></div>
-      <div class="edu-card"><div class="edu-icon">📐</div><div class="edu-degree">Preparatory Classes for Engineering Schools (MPSI)</div><div class="edu-school">Mohamed 6 High School of Excellence</div><div class="edu-period">2018 – 2020</div><div class="edu-location">📍 Benguerir, Morocco</div></div>
-      <div class="edu-card"><div class="edu-icon">🏅</div><div class="edu-degree">High School Diploma — Mathematics & Sciences (Highest Honors)</div><div class="edu-school">Mohamed Derfoufi High School</div><div class="edu-period">2016 – 2018</div><div class="edu-location">📍 Agadir, Morocco</div></div>
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">Engineer's Degree — Computer Science & Telecommunications</div>
+        <div class="edu-school">INP Toulouse – ENSEEIHT</div>
+        <div class="edu-period">2020 – 2023</div>
+        <div class="edu-location">📍 Toulouse, France</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📐</div>
+        <div class="edu-degree">Preparatory Classes for Engineering Schools (MPSI)</div>
+        <div class="edu-school">Mohamed 6 High School of Excellence</div>
+        <div class="edu-period">2018 – 2020</div>
+        <div class="edu-location">📍 Benguerir, Morocco</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">🏅</div>
+        <div class="edu-degree">High School Diploma — Mathematics & Sciences (Highest Honors)</div>
+        <div class="edu-school">Mohamed Derfoufi High School</div>
+        <div class="edu-period">2016 – 2018</div>
+        <div class="edu-location">📍 Agadir, Morocco</div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <p class="section-label">Get In Touch</p>
     <h2 class="section-title">Let's Work Together</h2>
     <div class="contact-box">
       <div class="contact-info">
-        <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out!</p>
+        <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
         <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
@@ -263,7 +305,10 @@
     </div>
   </div>
 </section>
-<footer><p>© 2026 Mohamed Ikich · Solution Engineer · Casablanca, Morocco</p></footer>
+
+<footer>
+  <p>© 2026 Mohamed Ikich · Solution Engineer · Casablanca, Morocco</p>
+</footer>
 
 <!-- CHAT -->
 <button id="chat-btn" onclick="toggleChat()">💬</button>
@@ -274,7 +319,7 @@
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
   <div class="chat-msgs" id="chatMsgs">
-    <div class="msg bot">Hey there! 👋 I'm Mohamed's AI assistant. Ask me anything about his experience, skills, or availability!</div>
+    <div class="msg bot">Hey there! 👋 I'm Mohamed's AI assistant. Ask me anything about his experience, skills, projects, or availability!</div>
   </div>
   <div class="chat-foot">
     <input id="chatInput" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMsg()"/>
@@ -294,6 +339,7 @@ const skills=[
   {icon:'📊',name:'VBScript / BPMN',cat:'Process & Reporting',pct:88},
   {icon:'🔧',name:'Git / GitLab / Maven',cat:'Dev Tools',pct:87},
 ];
+
 const sg=document.getElementById('skillsGrid');
 skills.forEach(s=>{
   sg.innerHTML+=`<div class="skill-card">
@@ -307,6 +353,7 @@ skills.forEach(s=>{
     <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
   </div>`;
 });
+
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
 },{threshold:.3});
@@ -318,28 +365,29 @@ function toggleChat(){
   document.getElementById('chat-panel').classList.toggle('open',chatOpen);
   if(chatOpen)document.getElementById('chatInput').focus();
 }
+
 async function sendMsg(){
   const inp=document.getElementById('chatInput');
   const q=inp.value.trim();
   if(!q)return;
   inp.value='';
   addMsg(q,'user');
-  const t=addMsg('Thinking...','bot typing');
+  const typing=addMsg('Thinking...','bot typing');
   try{
-    // Calls your own Netlify function — API key stays secret on the server
-    const res=await fetch('/.netlify/functions/chat',{
+    const res=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({message:q})
     });
     const d=await res.json();
-    t.remove();
-    addMsg(d.reply||'Sorry, I had trouble with that.','bot');
+    typing.remove();
+    addMsg(d.reply||'Sorry, I had trouble answering that.','bot');
   }catch(e){
-    t.remove();
+    typing.remove();
     addMsg('Oops! Something went wrong. Try again?','bot');
   }
 }
+
 function addMsg(txt,cls){
   const el=document.createElement('div');
   el.className='msg '+cls;
