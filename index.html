@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Ikich — Solution Engineer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --blue:#0ea5e9;--blue2:#38bdf8;--dark:#080c14;--dark2:#0f172a;
+    --dark3:#1e293b;--white:#f0f9ff;--gray:#94a3b8;--border:#1e3a5f;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
+  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{font-size:1.2rem;font-weight:700;color:var(--blue);letter-spacing:1px;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:.2s;}
+  .nav-links a:hover{color:var(--blue);}
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,165,233,.18),transparent);}
+  .hero-content{position:relative;max-width:750px;}
+  .hero-badge{display:inline-block;background:rgba(14,165,233,.15);border:1px solid var(--border);color:var(--blue2);font-size:.8rem;padding:.35rem .9rem;border-radius:99px;margin-bottom:1.5rem;letter-spacing:.5px;}
+  h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+  h1 span{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero-sub{font-size:1.1rem;color:var(--gray);margin-bottom:2.5rem;line-height:1.7;}
+  .btn{display:inline-block;padding:.75rem 2rem;border-radius:8px;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;font-size:.95rem;}
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);margin-left:.75rem;}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+  .hero-langs{display:flex;gap:.75rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
+  .lang-pill{background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);font-size:.78rem;padding:.3rem .8rem;border-radius:99px;}
+  section{padding:6rem 2rem;}
+  .container{max-width:1100px;margin:auto;}
+  .section-label{color:var(--blue);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;}
+  .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:.75rem;}
+  .section-sub{color:var(--gray);font-size:1rem;max-width:560px;line-height:1.7;margin-bottom:3rem;}
+  #about{background:var(--dark2);}
+  .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
+  .about-avatar{width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:5rem;max-width:280px;}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;max-width:280px;}
+  .stat{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;}
+  .stat-num{font-size:1.8rem;font-weight:800;color:var(--blue);}
+  .stat-label{font-size:.75rem;color:var(--gray);margin-top:.2rem;}
+  #experience{background:var(--dark);}
+  .timeline{position:relative;padding-left:2rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),transparent);}
+  .exp-item{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
+  .exp-item::before{content:'';position:absolute;left:-2.4rem;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid var(--dark);box-shadow:0 0 0 3px rgba(14,165,233,.3);}
+  .exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem;}
+  .exp-role{font-size:1.1rem;font-weight:700;}
+  .exp-company{color:var(--blue);font-weight:600;}
+  .exp-date{font-size:.8rem;color:var(--gray);background:var(--dark3);border:1px solid var(--border);padding:.25rem .7rem;border-radius:99px;white-space:nowrap;}
+  .exp-location{font-size:.82rem;color:var(--gray);margin-bottom:.75rem;}
+  .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+  .exp-bullets li{font-size:.875rem;color:var(--gray);line-height:1.6;padding-left:1rem;position:relative;}
+  .exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
+  .exp-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
+  .tag{font-size:.72rem;background:rgba(14,165,233,.12);color:var(--blue2);padding:.2rem .6rem;border-radius:99px;}
+  #skills{background:var(--dark2);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+  .skill-card{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:1.5rem;}
+  .skill-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;}
+  .skill-icon{width:40px;height:40px;border-radius:10px;background:rgba(14,165,233,.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+  .skill-name{font-weight:700;font-size:.95rem;}
+  .skill-cat{font-size:.75rem;color:var(--gray);}
+  .bar-wrap{background:var(--dark3);border-radius:99px;height:6px;overflow:hidden;}
+  .bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0;transition:width 1.2s ease;}
+  #education{background:var(--dark);}
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+  .edu-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.2s;}
+  .edu-card:hover{border-color:var(--blue);}
+  .edu-icon{font-size:2rem;margin-bottom:1rem;}
+  .edu-degree{font-size:1rem;font-weight:700;margin-bottom:.3rem;}
+  .edu-school{color:var(--blue);font-size:.9rem;font-weight:600;margin-bottom:.3rem;}
+  .edu-period{font-size:.8rem;color:var(--gray);}
+  .edu-location{font-size:.8rem;color:var(--gray);}
+  #contact{background:var(--dark2);}
+  .contact-box{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+  .contact-info p{color:var(--gray);line-height:1.8;margin-bottom:2rem;}
+  .contact-link{display:flex;align-items:center;gap:.75rem;color:var(--gray);text-decoration:none;margin-bottom:1rem;transition:.2s;font-size:.9rem;word-break:break-all;}
+  .contact-link:hover{color:var(--blue);}
+  .contact-link span{font-size:1.1rem;flex-shrink:0;}
+  .form-group{margin-bottom:1.25rem;}
+  .form-group label{display:block;font-size:.8rem;color:var(--gray);margin-bottom:.4rem;letter-spacing:.5px;}
+  .form-group input,.form-group textarea{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;color:var(--white);font-size:.9rem;outline:none;transition:.2s;font-family:inherit;}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
+  .form-group textarea{resize:vertical;min-height:100px;}
+  footer{background:var(--dark2);border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--gray);font-size:.85rem;}
+  #chat-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;width:56px;height:56px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(14,165,233,.4);transition:.2s;}
+  #chat-btn:hover{background:var(--blue2);transform:scale(1.08);}
+  #chat-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:200;width:360px;max-height:520px;background:var(--dark2);border:1px solid var(--border);border-radius:20px;display:flex;flex-direction:column;overflow:hidden;transform:scale(.9) translateY(20px);opacity:0;pointer-events:none;transition:.25s;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+  #chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
+  .chat-head{background:linear-gradient(90deg,#0c4a6e,#1e40af);padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;}
+  .chat-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+  .chat-head-info strong{display:block;font-size:.9rem;}
+  .chat-head-info span{font-size:.75rem;color:#7dd3fc;}
+  .chat-close{margin-left:auto;background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;opacity:.7;}
+  .chat-close:hover{opacity:1;}
+  .chat-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;}
+  .msg{max-width:82%;padding:.65rem .9rem;border-radius:14px;font-size:.875rem;line-height:1.5;}
+  .msg.bot{background:var(--dark3);color:var(--white);border-bottom-left-radius:4px;align-self:flex-start;}
+  .msg.user{background:var(--blue);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+  .msg.typing{color:var(--gray);}
+  .chat-foot{padding:.75rem;border-top:1px solid var(--border);display:flex;gap:.5rem;}
+  .chat-foot input{flex:1;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;color:var(--white);font-size:.875rem;outline:none;}
+  .chat-foot input:focus{border-color:var(--blue);}
+  .chat-foot button{background:var(--blue);border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+  .chat-foot button:hover{background:var(--blue2);}
+  @media(max-width:700px){
+    .about-grid,.contact-box{grid-template-columns:1fr;}
+    #chat-panel{width:calc(100vw - 2rem);right:1rem;}
+    .exp-header{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="logo">MI/</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Open to new opportunities · Casablanca, Morocco</div>
+    <h1>Hi, I'm <span>Mohamed Ikich</span></h1>
+    <p class="hero-sub">Solution Engineer with a passion for Enterprise Architecture, Risk Management & Compliance — bridging complex business needs with tailored technical solutions at scale.</p>
+    <a href="#experience" class="btn btn-primary">View My Experience</a>
+    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    <div class="hero-langs">
+      <span class="lang-pill">🇫🇷 French</span>
+      <span class="lang-pill">🇬🇧 English</span>
+      <span class="lang-pill">🇩🇪 German</span>
+      <span class="lang-pill">🇲🇦 Arabic</span>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-avatar">👨‍💻</div>
+        <div class="about-stats">
+          <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+          <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Enterprise Clients</div></div>
+          <div class="stat"><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
+          <div class="stat"><div class="stat-num">2</div><div class="stat-label">Countries</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Turning business complexity into <span style="color:var(--blue)">elegant solutions</span></h2>
+        <p style="color:var(--gray);line-height:1.8;margin-bottom:1.25rem;">I'm a Solution Engineer at Bizzdesign, based in Casablanca, Morocco, with an Engineering degree in Computer Science and Telecommunications from INP Toulouse – ENSEEIHT. I specialize in Enterprise Architecture, Risk Management, and Compliance using the HOPEX platform.</p>
+        <p style="color:var(--gray);line-height:1.8;margin-bottom:1.25rem;">I've worked with major Moroccan organizations including OCP, INWI, CDG, TangerMed, SCR, and Al Omrane, delivering customized solutions aligned with ISO standards and BPMN methodology.</p>
+        <p style="color:var(--gray);line-height:1.8;margin-bottom:2rem;">Previously, I interned at Airbus in Toulouse where I designed and deployed a robust web application for onboard aircraft computer data management using Python, Django, and Docker.</p>
+        <a href="#contact" class="btn btn-primary">Let's Work Together →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-sub">Delivering tailored enterprise solutions for leading organizations across Morocco and beyond.</p>
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Solution Engineer <span class="exp-company">@ Bizzdesign</span></div>
+            <div class="exp-location">📍 Casablanca, Morocco</div>
+          </div>
+          <div class="exp-date">June 2024 – Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led the implementation of a risk assessment model for TangerMed, aligning with client needs for thorough risk management requirements.</li>
+          <li>Supported CDG in migrating from HOPEX V4 to HOPEX Aquila, focusing on ISO compliance with close stakeholder collaboration.</li>
+          <li>Customized HOPEX Risk Management & Compliance solutions for SCR, managing scope and client meetings.</li>
+          <li>Developed automated Word report generation from HOPEX for Al Omrane using the Aspose Java library.</li>
+          <li>Built comparative business process reports for ICUBE combining VBScript + Java/HTML/CSS for dynamic reporting.</li>
+          <li>Customized HOPEX BPA, Risk Management, and Internal Controls solutions for INWI.</li>
+          <li>Modeled end-to-end business processes for OCP using HOPEX in compliance with BPMN standards.</li>
+          <li>Led business process modeling for AMDIE and managed migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Java</span><span class="tag">HOPEX</span><span class="tag">VBScript</span>
+          <span class="tag">C#</span><span class="tag">.NET</span><span class="tag">HTML/CSS</span>
+          <span class="tag">Maven</span><span class="tag">Git</span><span class="tag">BPMN</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Software Development Engineer <span class="exp-company">@ Airbus</span></div>
+            <div class="exp-location">📍 Toulouse, France</div>
+          </div>
+          <div class="exp-date">Apr 2023 – Nov 2023</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed a web application based on a dedicated database model for onboard aircraft computers.</li>
+          <li>Built a complete Docker image of the application to ensure deployment flexibility and consistency.</li>
+          <li>Performed performance and security testing to deliver a robust and reliable solution.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">Docker</span>
+          <span class="tag">SQL</span><span class="tag">HTML/CSS</span><span class="tag">jQuery</span>
+          <span class="tag">Git</span><span class="tag">Scrum</span><span class="tag">XML</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Expertise</p>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <p class="section-sub">A diverse toolkit spanning enterprise architecture, backend & frontend development, and cloud infrastructure.</p>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+<section id="education">
+  <div class="container">
+    <p class="section-label">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+    <p class="section-sub">Rigorous engineering formation across France and Morocco's top institutions.</p>
+    <div class="edu-grid">
+      <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-degree">Engineer's Degree — Computer Science & Telecommunications</div><div class="edu-school">INP Toulouse – ENSEEIHT</div><div class="edu-period">2020 – 2023</div><div class="edu-location">📍 Toulouse, France</div></div>
+      <div class="edu-card"><div class="edu-icon">📐</div><div class="edu-degree">Preparatory Classes for Engineering Schools (MPSI)</div><div class="edu-school">Mohamed 6 High School of Excellence</div><div class="edu-period">2018 – 2020</div><div class="edu-location">📍 Benguerir, Morocco</div></div>
+      <div class="edu-card"><div class="edu-icon">🏅</div><div class="edu-degree">High School Diploma — Mathematics & Sciences (Highest Honors)</div><div class="edu-school">Mohamed Derfoufi High School</div><div class="edu-period">2016 – 2018</div><div class="edu-location">📍 Agadir, Morocco</div></div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's Work Together</h2>
+    <div class="contact-box">
+      <div class="contact-info">
+        <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out!</p>
+        <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
+        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
+        <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
+        <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
+        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
+        <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
+      </div>
+      <div>
+        <div class="form-group"><label>NAME</label><input placeholder="Your name"/></div>
+        <div class="form-group"><label>EMAIL</label><input type="email" placeholder="your@email.com"/></div>
+        <div class="form-group"><label>MESSAGE</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer><p>© 2026 Mohamed Ikich · Solution Engineer · Casablanca, Morocco</p></footer>
+
+<!-- CHAT -->
+<button id="chat-btn" onclick="toggleChat()">💬</button>
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-head-info"><strong>Ask Mohamed's AI</strong><span>Knows everything about Mohamed</span></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">Hey there! 👋 I'm Mohamed's AI assistant. Ask me anything about his experience, skills, or availability!</div>
+  </div>
+  <div class="chat-foot">
+    <input id="chatInput" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <button onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+const skills=[
+  {icon:'🏗️',name:'HOPEX Platform',cat:'Enterprise Architecture',pct:92},
+  {icon:'☕',name:'Java / C# / .NET',cat:'Backend',pct:85},
+  {icon:'🐍',name:'Python / Django',cat:'Backend',pct:88},
+  {icon:'🌐',name:'HTML / CSS / jQuery / JS',cat:'Frontend',pct:82},
+  {icon:'🐋',name:'Docker',cat:'DevOps',pct:80},
+  {icon:'☁️',name:'Amazon Web Services',cat:'Cloud',pct:75},
+  {icon:'🗄️',name:'SQL / PostgreSQL',cat:'Database',pct:83},
+  {icon:'📊',name:'VBScript / BPMN',cat:'Process & Reporting',pct:88},
+  {icon:'🔧',name:'Git / GitLab / Maven',cat:'Dev Tools',pct:87},
+];
+const sg=document.getElementById('skillsGrid');
+skills.forEach(s=>{
+  sg.innerHTML+=`<div class="skill-card">
+    <div class="skill-header">
+      <div class="skill-icon">${s.icon}</div>
+      <div><div class="skill-name">${s.name}</div><div class="skill-cat">${s.cat}</div></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray);margin-bottom:.5rem">
+      <span>Proficiency</span><span style="color:var(--blue)">${s.pct}%</span>
+    </div>
+    <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
+  </div>`;
+});
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
+},{threshold:.3});
+obs.observe(document.getElementById('skills'));
+
+let chatOpen=false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chat-panel').classList.toggle('open',chatOpen);
+  if(chatOpen)document.getElementById('chatInput').focus();
+}
+async function sendMsg(){
+  const inp=document.getElementById('chatInput');
+  const q=inp.value.trim();
+  if(!q)return;
+  inp.value='';
+  addMsg(q,'user');
+  const t=addMsg('Thinking...','bot typing');
+  try{
+    // Calls your own Netlify function — API key stays secret on the server
+    const res=await fetch('/.netlify/functions/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:q})
+    });
+    const d=await res.json();
+    t.remove();
+    addMsg(d.reply||'Sorry, I had trouble with that.','bot');
+  }catch(e){
+    t.remove();
+    addMsg('Oops! Something went wrong. Try again?','bot');
+  }
+}
+function addMsg(txt,cls){
+  const el=document.createElement('div');
+  el.className='msg '+cls;
+  el.textContent=txt;
+  const msgs=document.getElementById('chatMsgs');
+  msgs.appendChild(el);
+  msgs.scrollTop=msgs.scrollHeight;
+  return el;
+}
+</script>
+</body>
+</html>
