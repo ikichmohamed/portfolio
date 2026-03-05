@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mohamed Ikich — Solution Engineer</title>
+<script src="https://js.puter.com/v2/"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{
@@ -113,7 +114,7 @@
   .msg{max-width:82%;padding:.65rem .9rem;border-radius:14px;font-size:.875rem;line-height:1.5;}
   .msg.bot{background:var(--dark3);color:var(--white);border-bottom-left-radius:4px;align-self:flex-start;}
   .msg.user{background:var(--blue);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
-  .msg.typing{color:var(--gray);}
+  .msg.typing{color:var(--gray);font-style:italic;}
   .chat-foot{padding:.75rem;border-top:1px solid var(--border);display:flex;gap:.5rem;}
   .chat-foot input{flex:1;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;color:var(--white);font-size:.875rem;outline:none;}
   .chat-foot input:focus{border-color:var(--blue);}
@@ -315,7 +316,7 @@
 <div id="chat-panel">
   <div class="chat-head">
     <div class="chat-avatar">🤖</div>
-    <div class="chat-head-info"><strong>Ask Mohamed's AI</strong><span>Knows everything about Mohamed</span></div>
+    <div class="chat-head-info"><strong>Ask Mohamed's AI</strong><span>Powered by Puter.js · Free</span></div>
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
   <div class="chat-msgs" id="chatMsgs">
@@ -328,6 +329,7 @@
 </div>
 
 <script>
+// Skills
 const skills=[
   {icon:'🏗️',name:'HOPEX Platform',cat:'Enterprise Architecture',pct:92},
   {icon:'☕',name:'Java / C# / .NET',cat:'Backend',pct:85},
@@ -339,7 +341,6 @@ const skills=[
   {icon:'📊',name:'VBScript / BPMN',cat:'Process & Reporting',pct:88},
   {icon:'🔧',name:'Git / GitLab / Maven',cat:'Dev Tools',pct:87},
 ];
-
 const sg=document.getElementById('skillsGrid');
 skills.forEach(s=>{
   sg.innerHTML+=`<div class="skill-card">
@@ -353,48 +354,64 @@ skills.forEach(s=>{
     <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
   </div>`;
 });
-
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
 },{threshold:.3});
 obs.observe(document.getElementById('skills'));
 
-let chatOpen=false;
+// Chat system prompt
+const SYSTEM = `You are an AI assistant on Mohamed Ikich's portfolio website. Here is everything about him:
+
+NAME: Mohamed Ikich
+ROLE: Solution Engineer at Bizzdesign (June 2024 – Present), based in Casablanca, Morocco.
+EDUCATION: Engineer's Degree in Computer Science & Telecommunications from INP Toulouse – ENSEEIHT (2020-2023). Preparatory classes (MPSI) at Mohamed 6 High School of Excellence, Benguerir (2018-2020). High School Diploma with Highest Honors in Math & Sciences from Mohamed Derfoufi High School, Agadir (2016-2018).
+CONTACT: ikich.mohamed.mpsi@gmail.com | mikich@mega.com | +212604766142 | github.com/momoikich | linkedin.com/in/mohamed-ikich-2b285b1b4/
+LANGUAGES: French, English, German (all fluent/professional)
+EXPERIENCE AT BIZZDESIGN: Led risk assessment model for TangerMed. Supported CDG migration from HOPEX V4 to HOPEX Aquila with ISO compliance. Customized HOPEX Risk Management & Compliance for SCR. Developed automated Word report generation for Al Omrane using Aspose Java. Built comparative business process reports for ICUBE with VBScript + Java/HTML/CSS. Customized HOPEX BPA, Risk Management, Internal Controls for INWI. Modeled end-to-end business processes for OCP using HOPEX & BPMN. Led AMDIE business process modeling and migration from HOPEX V5 to HOPEX Aquila 6.2.3. Technologies: Java, HOPEX, Maven, VBA, Git, C#, .NET Framework, HTML/CSS.
+EXPERIENCE AT AIRBUS (Apr–Nov 2023, Toulouse): Designed a web app with database model for onboard aircraft computers. Built full Docker image for deployment. Performed performance and security testing. Technologies: Python, SQL, Django, XML, HTML/CSS, jQuery, Git, Scrum, Docker.
+TECHNICAL SKILLS: HOPEX, Java, Python, Django, Docker, AWS, JavaScript, jQuery, HTML/CSS, VBScript, SQL, PostgreSQL, Git, GitLab, Maven, C#, .NET, BPMN, Matlab, LaTeX.
+BEHAVIORAL SKILLS: Communication, Teamwork, Problem Solving, Time Management, Adaptability, Creativity, Empathy, Collaboration.
+AVAILABILITY: Open to new opportunities.
+
+Answer warmly, concisely, and professionally. Keep answers under 3 sentences unless listing details.`;
+
+// Chat history for multi-turn context
+let history = [{ role: 'system', content: SYSTEM }];
+
+let chatOpen = false;
 function toggleChat(){
-  chatOpen=!chatOpen;
-  document.getElementById('chat-panel').classList.toggle('open',chatOpen);
-  if(chatOpen)document.getElementById('chatInput').focus();
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+  if(chatOpen) document.getElementById('chatInput').focus();
 }
 
 async function sendMsg(){
-  const inp=document.getElementById('chatInput');
-  const q=inp.value.trim();
-  if(!q)return;
-  inp.value='';
-  addMsg(q,'user');
-  const typing=addMsg('Thinking...','bot typing');
-  try{
-    const res=await fetch('/api/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({message:q})
-    });
-    const d=await res.json();
+  const inp = document.getElementById('chatInput');
+  const q = inp.value.trim();
+  if(!q) return;
+  inp.value = '';
+  addMsg(q, 'user');
+  history.push({ role: 'user', content: q });
+  const typing = addMsg('Thinking...', 'bot typing');
+  try {
+    const resp = await puter.ai.chat(history, { model: 'claude-sonnet-4-5' });
+    const reply = resp?.message?.content?.[0]?.text || resp?.text || 'Sorry, I had trouble answering that.';
+    history.push({ role: 'assistant', content: reply });
     typing.remove();
-    addMsg(d.reply||'Sorry, I had trouble answering that.','bot');
-  }catch(e){
+    addMsg(reply, 'bot');
+  } catch(e) {
     typing.remove();
-    addMsg('Oops! Something went wrong. Try again?','bot');
+    addMsg('Oops! Something went wrong. Try again?', 'bot');
   }
 }
 
-function addMsg(txt,cls){
-  const el=document.createElement('div');
-  el.className='msg '+cls;
-  el.textContent=txt;
-  const msgs=document.getElementById('chatMsgs');
+function addMsg(txt, cls){
+  const el = document.createElement('div');
+  el.className = 'msg ' + cls;
+  el.textContent = txt;
+  const msgs = document.getElementById('chatMsgs');
   msgs.appendChild(el);
-  msgs.scrollTop=msgs.scrollHeight;
+  msgs.scrollTop = msgs.scrollHeight;
   return el;
 }
 </script>
