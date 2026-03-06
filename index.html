@@ -263,78 +263,192 @@
   <div class="container">
     <p class="section-label">Personal Projects</p>
     <h2 class="section-title">What I've Built</h2>
-    <p class="section-sub">Academic and personal projects showcasing my engineering and software development skills.</p>
+    <p class="section-sub">Academic and personal projects showcasing engineering depth and software craftsmanship.</p>
 
     <div class="proj-card">
-      <!-- Header -->
-      <div class="proj-header">
-        <div class="proj-header-left">
-          <div class="proj-icon">🤖</div>
+      <!-- Top bar -->
+      <div class="proj-topbar">
+        <div class="proj-topbar-left">
+          <div class="proj-icon-wrap">🤖</div>
           <div>
-            <div class="proj-category">Final Year Engineering Project · Team of 5</div>
-            <h3 class="proj-title">AutoTester 2.0</h3>
-            <div class="proj-subtitle">Automated student code evaluation framework</div>
+            <div class="proj-eyebrow">Final Year Project · ENSEEIHT · Team of 5</div>
+            <div class="proj-name">AutoTester <span>2.0</span></div>
+            <div class="proj-tagline">CI/CD framework that automatically grades student code — zero professor intervention required.</div>
           </div>
         </div>
-        <a href="https://github.com/momoikich/Autotester2.0" target="_blank" class="proj-github-btn">
-          <span>🐙</span> View on GitHub
-        </a>
-      </div>
-
-      <!-- Description -->
-      <p class="proj-desc">AutoTester 2.0 (feat3p) is a Python-based CI/CD framework developed during the final year at ENSEEIHT to automate the evaluation of student assignments. Professors configure test scenarios in a <code>config.py</code> file; when a student commits their work, the pipeline automatically triggers, runs the defined test scenarios, and pushes a detailed feedback report back to the student's repository — all without manual intervention.</p>
-
-      <!-- Feature highlights -->
-      <div class="proj-features">
-        <div class="proj-feature">
-          <div class="proj-feature-icon">⚡</div>
-          <div>
-            <div class="proj-feature-title">On-Demand Evaluation</div>
-            <div class="proj-feature-desc">Students request specific test scenarios via a <code>modalites.txt</code> file. The system enforces attempt limits and cooldown delays per scenario.</div>
-          </div>
-        </div>
-        <div class="proj-feature">
-          <div class="proj-feature-icon">🔁</div>
-          <div>
-            <div class="proj-feature-title">GitLab CI/CD Integration</div>
-            <div class="proj-feature-desc">Each student commit triggers a cross-project pipeline using GitLab trigger tokens, automatically launching the AutoTester evaluation pipeline.</div>
-          </div>
-        </div>
-        <div class="proj-feature">
-          <div class="proj-feature-icon">🐋</div>
-          <div>
-            <div class="proj-feature-title">Dockerized Deployment</div>
-            <div class="proj-feature-desc">A dedicated Docker image bundles all framework dependencies, enabling consistent and portable execution across any GitLab CI runner.</div>
-          </div>
-        </div>
-        <div class="proj-feature">
-          <div class="proj-feature-icon">📋</div>
-          <div>
-            <div class="proj-feature-title">Configurable Test Scenarios</div>
-            <div class="proj-feature-desc">Professors define scenarios with custom tools (Java compiler, blackbox, JUnit...), visibility flags, penalty weights, and attempt quotas via a Python config file.</div>
-          </div>
+        <div class="proj-topbar-right">
+          <div class="proj-stat"><div class="proj-stat-n">96.5%</div><div class="proj-stat-l">Python</div></div>
+          <div class="proj-stat"><div class="proj-stat-n">5</div><div class="proj-stat-l">Contributors</div></div>
+          <a href="https://github.com/momoikich/Autotester2.0" target="_blank" class="proj-gh-btn">🐙 GitHub</a>
         </div>
       </div>
 
-      <!-- Tech stack -->
-      <div class="proj-footer">
-        <div class="proj-stack">
-          <span class="tag">Python</span>
-          <span class="tag">GitLab CI/CD</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Shell</span>
-          <span class="tag">Git</span>
-          <span class="tag">Java</span>
-          <span class="tag">JUnit</span>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-meta-item">👥 5 contributors</span>
-          <span class="proj-meta-item">🏫 ENSEEIHT · 2022–2023</span>
-          <span class="proj-meta-item">🐍 96.5% Python</span>
+      <!-- Tab nav -->
+      <div class="proj-tabs">
+        <button class="proj-tab active" onclick="switchTab(this,'how')">How It Works</button>
+        <button class="proj-tab" onclick="switchTab(this,'flow')">Pipeline Flow</button>
+        <button class="proj-tab" onclick="switchTab(this,'roles')">Roles</button>
+        <button class="proj-tab" onclick="switchTab(this,'tech')">Tech Stack</button>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="proj-panel active" id="tab-how">
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-num">01</div>
+            <div class="how-icon">⚙️</div>
+            <div class="how-title">Professor Configures</div>
+            <div class="how-desc">The professor writes a <code>config.py</code> defining test scenarios — each with tools (Java compiler, JUnit, Blackbox...), attempt limits, cooldown delays, visibility flags, and penalty weights.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">02</div>
+            <div class="how-icon">📝</div>
+            <div class="how-title">Student Requests Tests</div>
+            <div class="how-desc">The student edits <code>modalites.txt</code> — changing <code>non</code> to <code>oui</code> next to each scenario they want evaluated — then commits and pushes their work.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">03</div>
+            <div class="how-icon">🔁</div>
+            <div class="how-title">Pipeline Auto-Triggers</div>
+            <div class="how-desc">The student's GitLab pipeline fires on commit and uses a trigger token to launch the AutoTester 2.0 master pipeline — no manual action from the professor required.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">04</div>
+            <div class="how-icon">📊</div>
+            <div class="how-title">Feedback Committed Back</div>
+            <div class="how-desc">AutoTester runs each selected scenario inside a Docker container, computes penalties, and commits a structured feedback report directly to the student's evaluation branch.</div>
+          </div>
         </div>
       </div>
+
+      <!-- PIPELINE FLOW -->
+      <div class="proj-panel" id="tab-flow">
+        <div class="flow-wrap">
+          <div class="flow-col">
+            <div class="flow-actor student">👨‍🎓 Student Repo</div>
+            <div class="flow-step s">Edits <code>modalites.txt</code></div>
+            <div class="flow-step s">git commit &amp; push</div>
+            <div class="flow-step s highlight-step">gitlab-ci.yml triggers</div>
+            <div class="flow-spacer"></div>
+            <div class="flow-step s">Receives feedback report on <code>eval</code> branch</div>
+          </div>
+          <div class="flow-connector-col">
+            <div class="flow-line"></div>
+            <div class="flow-chevron">⟶</div>
+            <div class="flow-label">trigger token</div>
+            <div class="flow-line"></div>
+            <div class="flow-chevron flip">⟵</div>
+            <div class="flow-label">git commit</div>
+          </div>
+          <div class="flow-col">
+            <div class="flow-actor master">🤖 AutoTester Pipeline</div>
+            <div class="flow-step m">Reads <code>modalites.txt</code></div>
+            <div class="flow-step m">Loads <code>config.py</code> scenarios</div>
+            <div class="flow-step m highlight-step">Runs inside Docker container</div>
+            <div class="flow-step m">Executes selected scenarios</div>
+            <div class="flow-step m">Computes penalties &amp; results</div>
+          </div>
+          <div class="flow-connector-col">
+            <div class="flow-line"></div>
+            <div class="flow-chevron">⟶</div>
+            <div class="flow-label">reads config</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-col">
+            <div class="flow-actor prof">👨‍🏫 Professor Repo</div>
+            <div class="flow-step p"><code>config.py</code> — scenarios</div>
+            <div class="flow-step p"><code>__fournis/</code> — base files</div>
+            <div class="flow-step p">students.csv</div>
+            <div class="flow-step p highlight-step">JUnit / Checkstyle config</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROLES -->
+      <div class="proj-panel" id="tab-roles">
+        <div class="roles-grid">
+          <div class="role-card prof-card">
+            <div class="role-icon">👨‍🏫</div>
+            <div class="role-title">Professor</div>
+            <ul class="role-list">
+              <li>Writes <code>config.py</code> with test scenarios</li>
+              <li>Defines attempt limits &amp; delay between runs</li>
+              <li>Sets scenario visibility (hidden eval tests)</li>
+              <li>Assigns penalty weights per scenario</li>
+              <li>Can trigger <code>evaluateAll</code> for an entire cohort</li>
+              <li>Configures GitLab CI pipeline &amp; trigger tokens</li>
+            </ul>
+            <div class="role-cmd"><span class="cmd-label">Command</span><code>feat3p evaluateAll &lt;commit&gt; &lt;tp&gt; &lt;promo.csv&gt;</code></div>
+          </div>
+          <div class="role-card student-card">
+            <div class="role-icon">👨‍🎓</div>
+            <div class="role-title">Student</div>
+            <ul class="role-list">
+              <li>Writes code inside their GitLab repo</li>
+              <li>Edits <code>modalites.txt</code> to request test runs</li>
+              <li>Changes <code>non → oui</code> for desired scenarios</li>
+              <li>Commits &amp; pushes to trigger evaluation</li>
+              <li>Reads feedback report on <code>eval</code> branch</li>
+              <li>Respects attempt limits and cooldown periods</li>
+            </ul>
+            <div class="role-cmd"><span class="cmd-label">modalites.txt</span><code>scenario1 : oui &nbsp;// requests this test</code></div>
+          </div>
+          <div class="role-card system-card">
+            <div class="role-icon">🤖</div>
+            <div class="role-title">AutoTester System</div>
+            <ul class="role-list">
+              <li>Listens for student commit via trigger token</li>
+              <li>Runs inside a dedicated Docker image</li>
+              <li>Validates <code>modalites.txt</code> integrity</li>
+              <li>Enforces attempt limits &amp; cooldown delays</li>
+              <li>Executes test tools: JUnit, Blackbox, Compiler…</li>
+              <li>Commits structured feedback back to student</li>
+            </ul>
+            <div class="role-cmd"><span class="cmd-label">Docker image</span><code>registry.gitlab.com/projet-long/autotester2</code></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="proj-panel" id="tab-tech">
+        <div class="tech-grid">
+          <div class="tech-item">
+            <div class="tech-icon">🐍</div>
+            <div class="tech-name">Python 3</div>
+            <div class="tech-role">Core framework — scenario engine, CLI (feat3p), pipeline orchestration</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🦊</div>
+            <div class="tech-name">GitLab CI/CD</div>
+            <div class="tech-role">Cross-project pipeline triggering between student repos and AutoTester master</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🐋</div>
+            <div class="tech-name">Docker</div>
+            <div class="tech-role">Custom image with all dependencies for consistent, portable test execution</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">☕</div>
+            <div class="tech-name">Java / JUnit</div>
+            <div class="tech-role">Test tool integration — compiles and runs student Java programs in scenarios</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🔧</div>
+            <div class="tech-name">Shell / Git</div>
+            <div class="tech-role">Repo cloning, branch management, committing feedback to student branches</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">✅</div>
+            <div class="tech-name">Checkstyle</div>
+            <div class="tech-role">Static code quality analysis integrated as a test tool inside scenarios</div>
+          </div>
+        </div>
+      </div>
+
     </div>
-
   </div>
 </section>
 
