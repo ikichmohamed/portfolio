@@ -14,6 +14,9 @@
   html{scroll-behavior:smooth;}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
 
+  .visitor-counter{display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.25);color:var(--blue2);font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:99px;margin-top:1.5rem;}
+  .visitor-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);animation:pulse 2s infinite;}
+
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
   .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
@@ -327,7 +330,11 @@
     <div class="hero-badge">✦ Open to new opportunities · Casablanca, Morocco</div>
     <h1>Hi, I'm <span>Mohamed Ikich</span></h1>
     <p class="hero-sub">Solution Engineer with a passion for Enterprise Architecture, Risk Management & Compliance — bridging complex business needs with tailored technical solutions at scale.</p>
-    <a href="#experience" class="btn btn-primary">View My Experience</a>
+    <div class="visitor-counter" id="visitorBadge">
+      <span class="visitor-dot"></span>
+      <span id="visitorCount">...</span> visitors
+    </div>
+    <a href="#experience" class="btn btn-primary" style="margin-top:1.5rem;">View My Experience</a>
     <a href="#contact" class="btn btn-outline" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</a>
     <div class="hero-langs">
       <span class="lang-pill">🇫🇷 French</span>
@@ -379,14 +386,14 @@
           <div class="exp-date">June 2024 – Present</div>
         </div>
         <ul class="exp-bullets">
-          <li>Led the implementation of a risk assessment model for TangerMed, aligning with client needs for thorough risk management requirements.</li>
-          <li>Supported CDG in migrating from HOPEX V4 to HOPEX Aquila, focusing on ISO compliance with close stakeholder collaboration.</li>
-          <li>Customized HOPEX Risk Management & Compliance solutions for SCR, managing scope and client meetings to deliver tailored outcomes.</li>
-          <li>Developed automated Word report generation from the HOPEX platform for Al Omrane using the Aspose Java library.</li>
-          <li>Built a comparative business process report for ICUBE combining VBScript for data extraction with Java, HTML, and CSS for dynamic reporting.</li>
-          <li>Customized HOPEX Business Process Analysis, Risk Management, and Internal Control solutions for INWI.</li>
-          <li>Modeled end-to-end business processes for OCP using HOPEX in compliance with BPMN standards.</li>
-          <li>Led business process modeling for AMDIE and managed successful migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
+          <li>Led the implementation of a risk assessment model for a major port operator client, aligning with their risk management requirements.</li>
+          <li>Supported a public financial institution in migrating from HOPEX V4 to HOPEX Aquila, focusing on ISO compliance with close stakeholder collaboration.</li>
+          <li>Customized HOPEX Risk Management & Compliance solutions for an insurance client, managing scope and client meetings to deliver tailored outcomes.</li>
+          <li>Developed automated Word report generation from the HOPEX platform for a real estate client using the Aspose Java library.</li>
+          <li>Built a comparative business process report for an industrial client combining VBScript for data extraction with Java, HTML, and CSS for dynamic reporting.</li>
+          <li>Customized HOPEX Business Process Analysis, Risk Management, and Internal Control solutions for a major telecom operator.</li>
+          <li>Modeled end-to-end business processes for a large industrial group using HOPEX in compliance with BPMN standards.</li>
+          <li>Led business process modeling for a government agency and managed successful migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
         </ul>
         <div class="exp-tags">
           <span class="tag">Java</span><span class="tag">HOPEX</span><span class="tag">VBScript</span>
@@ -1049,10 +1056,9 @@
       <div class="contact-info">
         <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
-        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
-        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
+        <a href="https://github.com/ikichmohamed" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
@@ -1070,6 +1076,22 @@
 </footer>
 
 <script>
+// Visitor counter
+(async () => {
+  try {
+    const KEY = 'portfolio-visitors';
+    let count = 1;
+    try {
+      const res = await window.storage.get(KEY, true);
+      count = parseInt(res.value || '0') + 1;
+    } catch(e) { count = 1; }
+    await window.storage.set(KEY, String(count), true);
+    document.getElementById('visitorCount').textContent = count.toLocaleString();
+  } catch(e) {
+    document.getElementById('visitorBadge').style.display = 'none';
+  }
+})();
+
 // Tab switching
 function switchTab(btn, id){
   document.querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
