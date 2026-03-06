@@ -147,6 +147,25 @@
   .tech-name{font-size:.95rem;font-weight:700;margin-bottom:.3rem;}
   .tech-role{font-size:.78rem;color:var(--gray);line-height:1.5;}
 
+  /* EPIDEMIC MODEL CARD */
+  .ep-model-card{border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
+  .ep-model-header{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+  .ep-model-badge{font-size:.8rem;font-weight:800;padding:.35rem .9rem;border-radius:8px;letter-spacing:1px;white-space:nowrap;}
+  .ep-model-title{font-size:1rem;font-weight:700;}
+  .ep-model-sub{font-size:.78rem;color:var(--gray);}
+  .ep-model-desc{font-size:.85rem;color:var(--gray);line-height:1.7;}
+  .ep-model-desc code{background:var(--dark3);color:var(--blue2);padding:.1rem .3rem;border-radius:4px;font-size:.78rem;}
+  .ep-model-flow{display:flex;align-items:center;gap:.4rem;margin-left:auto;flex-shrink:0;}
+  .ep-node{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;}
+  .s-node{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.4);}
+  .i-node{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.4);}
+  .r-node{background:rgba(139,92,246,.2);color:#c4b5fd;border:1px solid rgba(139,92,246,.4);}
+  .a-node{background:rgba(14,165,233,.2);color:var(--blue2);border:1px solid rgba(14,165,233,.4);}
+  .ep-arrow{font-size:.7rem;color:var(--gray);white-space:nowrap;}
+  .ep-params{display:flex;gap:.5rem;flex-wrap:wrap;}
+  .ep-param{font-size:.72rem;background:var(--dark3);border:1px solid var(--border);color:var(--gray);padding:.2rem .6rem;border-radius:99px;}
+  .ep-param code{color:var(--blue2);background:none;font-size:.72rem;}
+
   /* SKILLS */
   #skills{background:var(--dark2);}
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
@@ -511,6 +530,220 @@
       </div>
     </div>
   </div>
+
+    <!-- EPIDEMIC PROJECT CARD -->
+    <div class="proj-card" style="margin-top:2rem;">
+      <div class="proj-topbar">
+        <div class="proj-topbar-left">
+          <div class="proj-icon-wrap" style="background:linear-gradient(135deg,#064e3b,#065f46);">🦠</div>
+          <div>
+            <div class="proj-eyebrow">Graph Theory Project · ENSEEIHT SN · Duo</div>
+            <div class="proj-name">Epidemic <span>Spreading</span></div>
+            <div class="proj-tagline">Graph-based mathematical modeling of COVID-19 epidemic propagation through human contact networks.</div>
+          </div>
+        </div>
+        <div class="proj-topbar-right">
+          <div class="proj-stat"><div class="proj-stat-n">3</div><div class="proj-stat-l">Models</div></div>
+          <div class="proj-stat"><div class="proj-stat-n">1000+</div><div class="proj-stat-l">Node Network</div></div>
+          <span class="proj-gh-btn" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#6ee7b7;cursor:default;">🎓 ENSEEIHT</span>
+        </div>
+      </div>
+
+      <div class="proj-tabs">
+        <button class="proj-tab active" onclick="switchTab2(this,'ep-overview')">Overview</button>
+        <button class="proj-tab" onclick="switchTab2(this,'ep-models')">The 3 Models</button>
+        <button class="proj-tab" onclick="switchTab2(this,'ep-zero')">Patient Zero</button>
+        <button class="proj-tab" onclick="switchTab2(this,'ep-tech')">Tech Stack</button>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="proj-panel active" id="tab-ep-overview">
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-num">01</div>
+            <div class="how-icon">🌐</div>
+            <div class="how-title">Contact Network</div>
+            <div class="how-desc">The population is modeled as a graph where each <strong>node = person</strong> and each <strong>edge = contact</strong>. Disease only travels through edges — capturing real-world social structures like families, workplaces, and neighborhoods.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">02</div>
+            <div class="how-icon">🧮</div>
+            <div class="how-title">Mathematical Modeling</div>
+            <div class="how-desc">Three epidemic models (SIS, SIR, SAIR) simulate disease spread using infection rate <code>β</code>, curing rate <code>α</code>, and effective spreading rate <code>τ = α/β</code> across 3 real-world-inspired networks.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">03</div>
+            <div class="how-icon">📊</div>
+            <div class="how-title">Monte Carlo Simulation</div>
+            <div class="how-desc">Since each spread is stochastic, the models run thousands of simulations to produce reliable statistical predictions of infection percentages over time for each disease configuration.</div>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-card">
+            <div class="how-num">04</div>
+            <div class="how-icon">🔍</div>
+            <div class="how-title">Source Detection</div>
+            <div class="how-desc">Given a snapshot of who is infected/recovered at a point in time, two graph algorithms (Jordan Center and Distance Centrality) attempt to trace back and identify the original Patient Zero.</div>
+          </div>
+        </div>
+
+        <!-- Network types -->
+        <div style="margin-top:2rem;">
+          <div style="font-size:.8rem;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;font-weight:700;">Contact Networks Used</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;">
+            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
+              <div class="how-icon">🥋</div>
+              <div class="how-title">Karate Club (karat7)</div>
+              <div class="how-desc">34 nodes — inspired by Zachary's famous karate club problem. Dense small social network.</div>
+            </div>
+            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
+              <div class="how-icon">🎓</div>
+              <div class="how-title">N7 Students (n7_2A)</div>
+              <div class="how-desc">220 nodes across 3 departments (SN, MF2E, 3EA). Dense intra-dept, sparse inter-dept connections.</div>
+            </div>
+            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
+              <div class="how-icon">🏙️</div>
+              <div class="how-title">Toulouse Neighborhood</div>
+              <div class="how-desc">1000 nodes generated via Barabási-Albert model — mimics real-world scale-free social networks.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE 3 MODELS -->
+      <div class="proj-panel" id="tab-ep-models">
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+          <!-- SIS -->
+          <div class="ep-model-card" style="border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.04);">
+            <div class="ep-model-header">
+              <div class="ep-model-badge" style="background:rgba(251,191,36,.2);color:#fbbf24;">SIS</div>
+              <div>
+                <div class="ep-model-title">Susceptible → Infected → Susceptible</div>
+                <div class="ep-model-sub">For diseases you can catch again — flu, cold</div>
+              </div>
+              <div class="ep-model-flow">
+                <span class="ep-node s-node">S</span>
+                <span class="ep-arrow">—β→</span>
+                <span class="ep-node i-node">I</span>
+                <span class="ep-arrow">—α→</span>
+                <span class="ep-node s-node">S</span>
+              </div>
+            </div>
+            <p class="ep-model-desc">Each infected node spreads disease to susceptible neighbors with probability <code>β</code> per time step. Each infected node recovers with probability <code>α</code>. Cured individuals become susceptible again — the epidemic can plateau indefinitely if <code>τ = α/β</code> is high enough.</p>
+            <div class="ep-params">
+              <span class="ep-param"><code>β</code> infection rate</span>
+              <span class="ep-param"><code>α</code> curing rate</span>
+              <span class="ep-param"><code>τ = α/β</code> spreading rate</span>
+            </div>
+          </div>
+
+          <!-- SIR -->
+          <div class="ep-model-card" style="border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.04);">
+            <div class="ep-model-header">
+              <div class="ep-model-badge" style="background:rgba(139,92,246,.2);color:#c4b5fd;">SIR</div>
+              <div>
+                <div class="ep-model-title">Susceptible → Infected → Recovered</div>
+                <div class="ep-model-sub">For diseases that grant immunity — COVID-19</div>
+              </div>
+              <div class="ep-model-flow">
+                <span class="ep-node s-node">S</span>
+                <span class="ep-arrow">—β→</span>
+                <span class="ep-node i-node">I</span>
+                <span class="ep-arrow">—α→</span>
+                <span class="ep-node r-node">R</span>
+              </div>
+            </div>
+            <p class="ep-model-desc">Like SIS but recovered individuals gain permanent immunity — they cannot be reinfected. This causes the infected curve to always rise then fall back to zero, unlike SIS which can maintain a steady infected population. The epidemic always ends.</p>
+            <div class="ep-params">
+              <span class="ep-param"><code>β</code> infection rate</span>
+              <span class="ep-param"><code>α</code> curing rate</span>
+              <span class="ep-param">Recovered = immune</span>
+            </div>
+          </div>
+
+          <!-- SAIR -->
+          <div class="ep-model-card" style="border-color:rgba(14,165,233,.3);background:rgba(14,165,233,.04);">
+            <div class="ep-model-header">
+              <div class="ep-model-badge" style="background:rgba(14,165,233,.2);color:var(--blue2);">SAIR</div>
+              <div>
+                <div class="ep-model-title">Susceptible → Alert → Infected → Recovered</div>
+                <div class="ep-model-sub">Most realistic — models human behavioral response</div>
+              </div>
+              <div class="ep-model-flow">
+                <span class="ep-node s-node">S</span>
+                <span class="ep-arrow">—κ→</span>
+                <span class="ep-node a-node">A</span>
+                <span class="ep-arrow">—β₁→</span>
+                <span class="ep-node i-node">I</span>
+                <span class="ep-arrow">—α→</span>
+                <span class="ep-node r-node">R</span>
+              </div>
+            </div>
+            <p class="ep-model-desc">Individuals observe their neighbors — if surrounded by infected people they enter an <strong>Alert</strong> state (wear masks, wash hands) with rate <code>κ</code>. Alerted individuals have a reduced infection rate <code>β₁ &lt; β₀</code>. This models real human behavioral adaptation and significantly slows epidemic peaks.</p>
+            <div class="ep-params">
+              <span class="ep-param"><code>β₀</code> normal infection rate</span>
+              <span class="ep-param"><code>β₁</code> alert infection rate</span>
+              <span class="ep-param"><code>κ</code> alerting rate</span>
+              <span class="ep-param"><code>α</code> curing rate</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PATIENT ZERO -->
+      <div class="proj-panel" id="tab-ep-zero">
+        <p style="color:var(--gray);font-size:.9rem;line-height:1.8;margin-bottom:2rem;">Given only a <strong style="color:var(--white)">snapshot</strong> of who is currently infected or recovered in the network — can we mathematically trace back to who started the epidemic? Two graph algorithms were implemented and compared:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+
+          <div class="role-card" style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.2);">
+            <div class="role-icon">🎯</div>
+            <div class="role-title">Jordan Center</div>
+            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;">Finds the node that <strong style="color:var(--white)">minimizes the maximum shortest path</strong> to any infected or recovered node. The logic: Patient Zero is likely at the geometric center of the infection cluster.</p>
+            <div style="background:var(--dark3);border-radius:8px;padding:.75rem;font-size:.78rem;color:var(--blue2);font-family:monospace;">argmin<sub>v∈C</sub> max<sub>u∈C</sub> d(u,v)</div>
+            <ul class="role-list" style="margin-top:1rem;">
+              <li>Uses <code>dijkstra_shortest_paths</code> from LightGraphs</li>
+              <li>Works on the subgraph of infected + recovered nodes</li>
+              <li>Simple and fast — purely spatial reasoning</li>
+            </ul>
+          </div>
+
+          <div class="role-card" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.2);">
+            <div class="role-icon">📏</div>
+            <div class="role-title">Distance Centrality</div>
+            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;">Finds the node that <strong style="color:var(--white)">minimizes a weighted sum of distances</strong> to all infected and recovered nodes. Recovered nodes are weighted more heavily (×α) since they likely got sick earlier — closer to the origin.</p>
+            <div style="background:var(--dark3);border-radius:8px;padding:.75rem;font-size:.78rem;color:var(--blue2);font-family:monospace;">argmin<sub>v</sub> Σ [𝟙<sub>I</sub>(n)·d(v,n) + α·𝟙<sub>R</sub>(n)·d(v,n)]</div>
+            <ul class="role-list" style="margin-top:1rem;">
+              <li>Weighs recovered nodes more — they were infected earlier</li>
+              <li>More nuanced than Jordan — accounts for epidemic timeline</li>
+              <li>Tested on karat7 and a 50×50 grid network</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="how-card" style="background:rgba(16,185,129,.05);border-color:rgba(16,185,129,.3);">
+          <div class="how-icon">💡</div>
+          <div class="how-title">Key Insight</div>
+          <div class="how-desc">The stochastic nature of infection makes this problem inherently hard — different initial conditions can lead to identical snapshots. These spatial heuristics approximate the source but cannot guarantee correctness. The denser and more symmetric the network, the harder Patient Zero identification becomes.</div>
+        </div>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="proj-panel" id="tab-ep-tech">
+        <div class="tech-grid">
+          <div class="tech-item"><div class="tech-icon">⚡</div><div><div class="tech-name">Julia</div><div class="tech-role">Primary language — high-performance scientific computing ideal for large-scale graph simulations</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🕸️</div><div><div class="tech-name">LightGraphs.jl</div><div class="tech-role">Core graph library — graph creation, neighbor traversal, Dijkstra shortest paths for Patient Zero algorithms</div></div></div>
+          <div class="tech-item"><div class="tech-icon">📊</div><div><div class="tech-name">Plots.jl</div><div class="tech-role">Plotting infection curves, comparing SIS/SIR/SAIR models, visualizing epidemic evolution over time</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🎨</div><div><div class="tech-name">GraphPlot + Compose</div><div class="tech-role">Network visualization — rendering color-coded nodes (green=susceptible, orange=infected, purple=recovered)</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🎲</div><div><div class="tech-name">Distributions.jl</div><div class="tech-role">Binomial distributions used to model probabilistic infection and recovery events per time step</div></div></div>
+          <div class="tech-item"><div class="tech-icon">📓</div><div><div class="tech-name">Jupyter Notebook</div><div class="tech-role">Interactive notebook combining Julia code, graph outputs, and written mathematical analysis</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- SKILLS -->
@@ -629,10 +862,10 @@
       <div class="contact-info">
         <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
-        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> m.ikich@bizzdesign.com</a>
+        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
-        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
+        <a href="https://github.com/ikichmohamed" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
@@ -654,6 +887,13 @@
 function switchTab(btn, id){
   document.querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+function switchTab2(btn, id){
+  btn.closest('.proj-card').querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
+  btn.closest('.proj-card').querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
 }
