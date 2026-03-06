@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mohamed Ikich — Solution Engineer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23080c14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI,sans-serif' font-weight='800' font-size='28' fill='%230ea5e9'>MI</text></svg>"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{
@@ -131,7 +132,7 @@
     <h1>Hi, I'm <span>Mohamed Ikich</span></h1>
     <p class="hero-sub">Solution Engineer with a passion for Enterprise Architecture, Risk Management & Compliance — bridging complex business needs with tailored technical solutions at scale.</p>
     <a href="#experience" class="btn btn-primary">View My Experience</a>
-    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    <a href="#contact" class="btn btn-outline" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</a>
     <div class="hero-langs">
       <span class="lang-pill">🇫🇷 French</span>
       <span class="lang-pill">🇬🇧 English</span>
@@ -271,17 +272,17 @@
       <div class="contact-info">
         <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
-        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> m.ikich@bizzdesign.com</a>
+        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
         <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
-        <div class="form-group"><label>NAME</label><input placeholder="Your name"/></div>
-        <div class="form-group"><label>EMAIL</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="form-group"><label>MESSAGE</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
-        <button class="btn btn-primary" style="width:100%">Send Message →</button>
+        <div class="form-group"><label>NAME</label><input id="f-name" placeholder="Your name"/></div>
+        <div class="form-group"><label>EMAIL</label><input id="f-email" type="email" placeholder="your@email.com"/></div>
+        <div class="form-group"><label>MESSAGE</label><textarea id="f-msg" placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%" onclick="sendEmail()">Send Message →</button>
       </div>
     </div>
   </div>
@@ -319,6 +320,25 @@ skills.forEach(s=>{
     <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
   </div>`;
 });
+function sendEmail(){
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+  if(!name || !email || !msg){ alert('Please fill in all fields.'); return; }
+  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+  const body = encodeURIComponent(
+`Hi Mohamed,
+
+My name is ${name} and I found your portfolio online.
+
+${msg}
+
+Best regards,
+${name}
+${email}`);
+  window.location.href = `mailto:ikich.mohamed.mpsi@gmail.com?subject=${subject}&body=${body}`;
+}
+
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
 },{threshold:.3});
