@@ -152,6 +152,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certifications</a></li>
@@ -254,6 +255,86 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Personal Projects</p>
+    <h2 class="section-title">What I've Built</h2>
+    <p class="section-sub">Academic and personal projects showcasing my engineering and software development skills.</p>
+
+    <div class="proj-card">
+      <!-- Header -->
+      <div class="proj-header">
+        <div class="proj-header-left">
+          <div class="proj-icon">🤖</div>
+          <div>
+            <div class="proj-category">Final Year Engineering Project · Team of 5</div>
+            <h3 class="proj-title">AutoTester 2.0</h3>
+            <div class="proj-subtitle">Automated student code evaluation framework</div>
+          </div>
+        </div>
+        <a href="https://github.com/momoikich/Autotester2.0" target="_blank" class="proj-github-btn">
+          <span>🐙</span> View on GitHub
+        </a>
+      </div>
+
+      <!-- Description -->
+      <p class="proj-desc">AutoTester 2.0 (feat3p) is a Python-based CI/CD framework developed during the final year at ENSEEIHT to automate the evaluation of student assignments. Professors configure test scenarios in a <code>config.py</code> file; when a student commits their work, the pipeline automatically triggers, runs the defined test scenarios, and pushes a detailed feedback report back to the student's repository — all without manual intervention.</p>
+
+      <!-- Feature highlights -->
+      <div class="proj-features">
+        <div class="proj-feature">
+          <div class="proj-feature-icon">⚡</div>
+          <div>
+            <div class="proj-feature-title">On-Demand Evaluation</div>
+            <div class="proj-feature-desc">Students request specific test scenarios via a <code>modalites.txt</code> file. The system enforces attempt limits and cooldown delays per scenario.</div>
+          </div>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">🔁</div>
+          <div>
+            <div class="proj-feature-title">GitLab CI/CD Integration</div>
+            <div class="proj-feature-desc">Each student commit triggers a cross-project pipeline using GitLab trigger tokens, automatically launching the AutoTester evaluation pipeline.</div>
+          </div>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">🐋</div>
+          <div>
+            <div class="proj-feature-title">Dockerized Deployment</div>
+            <div class="proj-feature-desc">A dedicated Docker image bundles all framework dependencies, enabling consistent and portable execution across any GitLab CI runner.</div>
+          </div>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">📋</div>
+          <div>
+            <div class="proj-feature-title">Configurable Test Scenarios</div>
+            <div class="proj-feature-desc">Professors define scenarios with custom tools (Java compiler, blackbox, JUnit...), visibility flags, penalty weights, and attempt quotas via a Python config file.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech stack -->
+      <div class="proj-footer">
+        <div class="proj-stack">
+          <span class="tag">Python</span>
+          <span class="tag">GitLab CI/CD</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Shell</span>
+          <span class="tag">Git</span>
+          <span class="tag">Java</span>
+          <span class="tag">JUnit</span>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-meta-item">👥 5 contributors</span>
+          <span class="proj-meta-item">🏫 ENSEEIHT · 2022–2023</span>
+          <span class="proj-meta-item">🐍 96.5% Python</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
