@@ -14,6 +14,7 @@
   html{scroll-behavior:smooth;}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
 
+  /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
   .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
   .logo{font-size:1.2rem;font-weight:700;color:var(--blue);letter-spacing:1px;}
@@ -21,6 +22,7 @@
   .nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:.2s;}
   .nav-links a:hover{color:var(--blue);}
 
+  /* HERO */
   #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,165,233,.18),transparent);}
   .hero-content{position:relative;max-width:750px;}
@@ -28,7 +30,7 @@
   h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
   h1 span{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
   .hero-sub{font-size:1.1rem;color:var(--gray);margin-bottom:2.5rem;line-height:1.7;}
-  .btn{display:inline-block;padding:.75rem 2rem;border-radius:8px;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;font-size:.95rem;}
+  .btn{display:inline-block;padding:.75rem 2rem;border-radius:8px;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;font-size:.95rem;border:none;}
   .btn-primary{background:var(--blue);color:#fff;}
   .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
   .btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);margin-left:.75rem;}
@@ -36,12 +38,14 @@
   .hero-langs{display:flex;gap:.75rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
   .lang-pill{background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);font-size:.78rem;padding:.3rem .8rem;border-radius:99px;}
 
+  /* SECTIONS */
   section{padding:6rem 2rem;}
   .container{max-width:1100px;margin:auto;}
   .section-label{color:var(--blue);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;}
   .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:.75rem;}
   .section-sub{color:var(--gray);font-size:1rem;max-width:560px;line-height:1.7;margin-bottom:3rem;}
 
+  /* ABOUT */
   #about{background:var(--dark2);}
   .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
   .about-avatar{width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:5rem;max-width:280px;}
@@ -50,6 +54,7 @@
   .stat-num{font-size:1.8rem;font-weight:800;color:var(--blue);}
   .stat-label{font-size:.75rem;color:var(--gray);margin-top:.2rem;}
 
+  /* EXPERIENCE */
   #experience{background:var(--dark);}
   .timeline{position:relative;padding-left:2rem;}
   .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),transparent);}
@@ -66,6 +71,83 @@
   .exp-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
   .tag{font-size:.72rem;background:rgba(14,165,233,.12);color:var(--blue2);padding:.2rem .6rem;border-radius:99px;}
 
+  /* PROJECTS */
+  #projects{background:var(--dark2);}
+  .proj-card{background:var(--dark);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+  .proj-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:2rem;}
+  .proj-topbar-left{display:flex;gap:1.25rem;align-items:flex-start;}
+  .proj-icon-wrap{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:1.9rem;flex-shrink:0;}
+  .proj-eyebrow{font-size:.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:.3rem;}
+  .proj-name{font-size:1.9rem;font-weight:800;line-height:1;margin-bottom:.3rem;}
+  .proj-name span{color:var(--blue);}
+  .proj-tagline{font-size:.875rem;color:var(--gray);max-width:480px;line-height:1.5;}
+  .proj-topbar-right{display:flex;align-items:center;gap:1.5rem;flex-shrink:0;}
+  .proj-stat{text-align:center;}
+  .proj-stat-n{font-size:1.4rem;font-weight:800;color:var(--blue);}
+  .proj-stat-l{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;}
+  .proj-gh-btn{display:flex;align-items:center;gap:.4rem;background:var(--dark3);border:1px solid var(--border);color:var(--white);text-decoration:none;padding:.55rem 1.1rem;border-radius:8px;font-size:.82rem;font-weight:600;transition:.2s;}
+  .proj-gh-btn:hover{border-color:var(--blue);color:var(--blue);}
+  .proj-tabs{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow-x:auto;}
+  .proj-tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--gray);padding:.85rem 1.5rem;font-size:.875rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;font-family:inherit;}
+  .proj-tab:hover{color:var(--white);}
+  .proj-tab.active{color:var(--blue);border-bottom-color:var(--blue);background:rgba(14,165,233,.05);}
+  .proj-panel{display:none;padding:2rem;}
+  .proj-panel.active{display:block;}
+
+  /* How it works */
+  .how-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:.5rem;align-items:start;}
+  .how-card{background:var(--dark2);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:.2s;}
+  .how-card:hover{border-color:var(--blue);}
+  .how-num{font-size:.7rem;color:var(--blue);font-weight:800;letter-spacing:1px;margin-bottom:.5rem;}
+  .how-icon{font-size:1.6rem;margin-bottom:.6rem;}
+  .how-title{font-size:.95rem;font-weight:700;margin-bottom:.5rem;}
+  .how-desc{font-size:.8rem;color:var(--gray);line-height:1.6;}
+  .how-desc code,.flow-step code,.role-list li code{background:var(--dark3);color:var(--blue2);padding:.1rem .3rem;border-radius:4px;font-size:.75rem;}
+  .how-arrow{font-size:1.5rem;color:var(--blue);opacity:.5;padding-top:2.5rem;}
+
+  /* Pipeline flow */
+  .flow-wrap{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:start;overflow-x:auto;}
+  .flow-col{display:flex;flex-direction:column;gap:.6rem;}
+  .flow-actor{text-align:center;font-weight:700;font-size:.85rem;padding:.6rem;border-radius:10px;margin-bottom:.5rem;}
+  .flow-actor.student{background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);color:var(--blue2);}
+  .flow-actor.master{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.3);color:#c4b5fd;}
+  .flow-actor.prof{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80;}
+  .flow-step{font-size:.78rem;color:var(--gray);background:var(--dark2);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;line-height:1.4;}
+  .flow-step.s{border-left:3px solid var(--blue);}
+  .flow-step.m{border-left:3px solid #8b5cf6;}
+  .flow-step.p{border-left:3px solid #22c55e;}
+  .flow-step.hl{font-weight:600;color:var(--white);}
+  .flow-spacer{min-height:1.8rem;}
+  .flow-connector-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding-top:2.5rem;}
+  .flow-line{width:1px;flex:1;min-height:30px;background:var(--border);}
+  .flow-chevron{color:var(--blue);font-size:1.1rem;}
+  .flow-chevron.flip{transform:scaleX(-1);}
+  .flow-label{font-size:.62rem;color:var(--gray);text-align:center;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.5px;}
+
+  /* Roles */
+  .roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+  .role-card{border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;}
+  .prof-card{background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);}
+  .student-card{background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.2);}
+  .system-card{background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.2);}
+  .role-icon{font-size:2rem;}
+  .role-title{font-size:1.1rem;font-weight:800;}
+  .role-list{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+  .role-list li{font-size:.8rem;color:var(--gray);padding-left:1rem;position:relative;line-height:1.5;}
+  .role-list li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
+  .role-cmd{margin-top:.25rem;background:var(--dark3);border-radius:8px;padding:.65rem .9rem;}
+  .cmd-label{display:block;font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem;}
+  .role-cmd code{font-size:.75rem;color:var(--blue2);}
+
+  /* Tech */
+  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+  .tech-item{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:.2s;}
+  .tech-item:hover{border-color:var(--blue);}
+  .tech-icon{font-size:1.6rem;flex-shrink:0;}
+  .tech-name{font-size:.95rem;font-weight:700;margin-bottom:.3rem;}
+  .tech-role{font-size:.78rem;color:var(--gray);line-height:1.5;}
+
+  /* SKILLS */
   #skills{background:var(--dark2);}
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
   .skill-card{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:1.5rem;}
@@ -76,6 +158,7 @@
   .bar-wrap{background:var(--dark3);border-radius:99px;height:6px;overflow:hidden;}
   .bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0;transition:width 1.2s ease;}
 
+  /* EDUCATION */
   #education{background:var(--dark);}
   .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
   .edu-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.2s;}
@@ -88,19 +171,18 @@
 
   /* CERTIFICATIONS */
   #certifications{background:var(--dark2);}
-  .cert-featured{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:180px 1fr;gap:2.5rem;align-items:center;margin-bottom:3rem;position:relative;overflow:hidden;}
+  .cert-featured{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:180px 1fr;gap:2.5rem;align-items:center;margin-bottom:1.5rem;position:relative;overflow:hidden;}
   .cert-featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(14,165,233,.07),transparent);pointer-events:none;}
-  .cert-badge-wrap{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin:auto;position:relative;box-shadow:0 0 0 8px rgba(14,165,233,.1),0 0 0 16px rgba(14,165,233,.05);}
-  .cert-issuer{display:flex;align-items:center;gap:.5rem;color:var(--blue);font-weight:700;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem;}
+  .cert-badge-wrap{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin:auto;box-shadow:0 0 0 8px rgba(14,165,233,.1),0 0 0 16px rgba(14,165,233,.05);}
+  .cert-issuer{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem;}
   .cert-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;}
   .cert-title{font-size:1.6rem;font-weight:800;margin-bottom:.75rem;}
   .cert-desc{color:var(--gray);font-size:.875rem;line-height:1.7;margin-bottom:1rem;}
   .cert-meta{display:flex;gap:.5rem;flex-wrap:wrap;}
   .cert-pill{font-size:.72rem;background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);padding:.25rem .7rem;border-radius:99px;}
   .cert-pill.verified{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:#4ade80;}
-
   .hopex-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding:.75rem 1.25rem;background:var(--dark);border:1px solid var(--border);border-radius:12px;}
-  .hopex-logo{font-size:1.1rem;font-weight:800;color:var(--white);}
+  .hopex-logo{font-size:1.1rem;font-weight:800;}
   .hopex-logo span{color:var(--blue);}
   .hopex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;}
   .hopex-card{background:var(--dark);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.25s;}
@@ -117,12 +199,12 @@
   .hopex-level{font-size:.75rem;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;}
   .hopex-desc{font-size:.82rem;color:var(--gray);line-height:1.6;}
   .hopex-card-foot{padding:.75rem 1.25rem 1.25rem;display:flex;gap:.4rem;flex-wrap:wrap;}
-  .progress-bar-wrap{height:3px;background:var(--dark3);margin:0;}
-  .progress-bar-fill{height:100%;width:65%;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:99px;}
+  .progress-bar-wrap{height:3px;background:var(--dark3);}
+  .progress-bar-fill{height:100%;width:65%;background:linear-gradient(90deg,#fbbf24,#f59e0b);}
 
-  #contact{background:var(--dark2);}
-
-  .contact-box{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+  /* CONTACT */
+  #contact{background:var(--dark);}
+  .contact-box{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
   .contact-info p{color:var(--gray);line-height:1.8;margin-bottom:2rem;}
   .contact-link{display:flex;align-items:center;gap:.75rem;color:var(--gray);text-decoration:none;margin-bottom:1rem;transition:.2s;font-size:.9rem;word-break:break-all;}
   .contact-link:hover{color:var(--blue);}
@@ -133,19 +215,26 @@
   .form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
   .form-group textarea{resize:vertical;min-height:100px;}
 
+  /* FOOTER */
   footer{background:var(--dark2);border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--gray);font-size:.85rem;}
 
-
-
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .how-grid{grid-template-columns:1fr;gap:1rem;}
+    .how-arrow{display:none;}
+    .flow-wrap{grid-template-columns:1fr;}
+    .flow-connector-col{display:none;}
+  }
   @media(max-width:700px){
-    .about-grid,.contact-box{grid-template-columns:1fr;}
-    #chat-panel{width:calc(100vw - 2rem);right:1rem;}
-    .exp-header{flex-direction:column;}
+    .about-grid,.contact-box,.cert-featured{grid-template-columns:1fr;}
+    .proj-topbar-right{display:none;}
+    .nav-links{gap:1rem;}
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="logo">MI/</div>
@@ -264,9 +353,7 @@
     <p class="section-label">Personal Projects</p>
     <h2 class="section-title">What I've Built</h2>
     <p class="section-sub">Academic and personal projects showcasing engineering depth and software craftsmanship.</p>
-
     <div class="proj-card">
-      <!-- Top bar -->
       <div class="proj-topbar">
         <div class="proj-topbar-left">
           <div class="proj-icon-wrap">🤖</div>
@@ -283,7 +370,6 @@
         </div>
       </div>
 
-      <!-- Tab nav -->
       <div class="proj-tabs">
         <button class="proj-tab active" onclick="switchTab(this,'how')">How It Works</button>
         <button class="proj-tab" onclick="switchTab(this,'flow')">Pipeline Flow</button>
@@ -331,9 +417,9 @@
             <div class="flow-actor student">👨‍🎓 Student Repo</div>
             <div class="flow-step s">Edits <code>modalites.txt</code></div>
             <div class="flow-step s">git commit &amp; push</div>
-            <div class="flow-step s highlight-step">gitlab-ci.yml triggers</div>
+            <div class="flow-step s hl">gitlab-ci.yml triggers</div>
             <div class="flow-spacer"></div>
-            <div class="flow-step s">Receives feedback report on <code>eval</code> branch</div>
+            <div class="flow-step s">Receives feedback on <code>eval</code> branch</div>
           </div>
           <div class="flow-connector-col">
             <div class="flow-line"></div>
@@ -341,13 +427,13 @@
             <div class="flow-label">trigger token</div>
             <div class="flow-line"></div>
             <div class="flow-chevron flip">⟵</div>
-            <div class="flow-label">git commit</div>
+            <div class="flow-label">git commit back</div>
           </div>
           <div class="flow-col">
             <div class="flow-actor master">🤖 AutoTester Pipeline</div>
             <div class="flow-step m">Reads <code>modalites.txt</code></div>
             <div class="flow-step m">Loads <code>config.py</code> scenarios</div>
-            <div class="flow-step m highlight-step">Runs inside Docker container</div>
+            <div class="flow-step m hl">Runs inside Docker container</div>
             <div class="flow-step m">Executes selected scenarios</div>
             <div class="flow-step m">Computes penalties &amp; results</div>
           </div>
@@ -362,7 +448,7 @@
             <div class="flow-step p"><code>config.py</code> — scenarios</div>
             <div class="flow-step p"><code>__fournis/</code> — base files</div>
             <div class="flow-step p">students.csv</div>
-            <div class="flow-step p highlight-step">JUnit / Checkstyle config</div>
+            <div class="flow-step p hl">JUnit / Checkstyle config</div>
           </div>
         </div>
       </div>
@@ -375,10 +461,10 @@
             <div class="role-title">Professor</div>
             <ul class="role-list">
               <li>Writes <code>config.py</code> with test scenarios</li>
-              <li>Defines attempt limits &amp; delay between runs</li>
-              <li>Sets scenario visibility (hidden eval tests)</li>
+              <li>Defines attempt limits &amp; cooldown delays</li>
+              <li>Sets scenario visibility for hidden eval tests</li>
               <li>Assigns penalty weights per scenario</li>
-              <li>Can trigger <code>evaluateAll</code> for an entire cohort</li>
+              <li>Can trigger <code>evaluateAll</code> for entire cohort</li>
               <li>Configures GitLab CI pipeline &amp; trigger tokens</li>
             </ul>
             <div class="role-cmd"><span class="cmd-label">Command</span><code>feat3p evaluateAll &lt;commit&gt; &lt;tp&gt; &lt;promo.csv&gt;</code></div>
@@ -387,7 +473,7 @@
             <div class="role-icon">👨‍🎓</div>
             <div class="role-title">Student</div>
             <ul class="role-list">
-              <li>Writes code inside their GitLab repo</li>
+              <li>Writes code inside their GitLab repository</li>
               <li>Edits <code>modalites.txt</code> to request test runs</li>
               <li>Changes <code>non → oui</code> for desired scenarios</li>
               <li>Commits &amp; pushes to trigger evaluation</li>
@@ -415,39 +501,14 @@
       <!-- TECH STACK -->
       <div class="proj-panel" id="tab-tech">
         <div class="tech-grid">
-          <div class="tech-item">
-            <div class="tech-icon">🐍</div>
-            <div class="tech-name">Python 3</div>
-            <div class="tech-role">Core framework — scenario engine, CLI (feat3p), pipeline orchestration</div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🦊</div>
-            <div class="tech-name">GitLab CI/CD</div>
-            <div class="tech-role">Cross-project pipeline triggering between student repos and AutoTester master</div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🐋</div>
-            <div class="tech-name">Docker</div>
-            <div class="tech-role">Custom image with all dependencies for consistent, portable test execution</div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">☕</div>
-            <div class="tech-name">Java / JUnit</div>
-            <div class="tech-role">Test tool integration — compiles and runs student Java programs in scenarios</div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🔧</div>
-            <div class="tech-name">Shell / Git</div>
-            <div class="tech-role">Repo cloning, branch management, committing feedback to student branches</div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">✅</div>
-            <div class="tech-name">Checkstyle</div>
-            <div class="tech-role">Static code quality analysis integrated as a test tool inside scenarios</div>
-          </div>
+          <div class="tech-item"><div class="tech-icon">🐍</div><div><div class="tech-name">Python 3</div><div class="tech-role">Core framework — scenario engine, CLI (feat3p), pipeline orchestration</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🦊</div><div><div class="tech-name">GitLab CI/CD</div><div class="tech-role">Cross-project pipeline triggering between student repos and AutoTester master</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🐋</div><div><div class="tech-name">Docker</div><div class="tech-role">Custom image with all dependencies for consistent, portable test execution</div></div></div>
+          <div class="tech-item"><div class="tech-icon">☕</div><div><div class="tech-name">Java / JUnit</div><div class="tech-role">Test tool integration — compiles and runs student Java programs in scenarios</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🔧</div><div><div class="tech-name">Shell / Git</div><div class="tech-role">Repo cloning, branch management, committing feedback to student branches</div></div></div>
+          <div class="tech-item"><div class="tech-icon">✅</div><div><div class="tech-name">Checkstyle</div><div class="tech-role">Static code quality analysis integrated as a test tool inside scenarios</div></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -501,116 +562,60 @@
     <h2 class="section-title">Licenses & Certifications</h2>
     <p class="section-sub">Industry-recognized certifications across data analysis, enterprise architecture, and governance platforms.</p>
 
-    <!-- IBM Badge -->
     <div class="cert-featured">
-      <div class="cert-featured-left">
-        <div class="cert-badge-wrap">
-          <div class="cert-badge-icon">🏅</div>
-          <div class="cert-badge-shine"></div>
-        </div>
-      </div>
-      <div class="cert-featured-right">
+      <div><div class="cert-badge-wrap">🏅</div></div>
+      <div>
         <div class="cert-issuer"><span class="cert-dot"></span>IBM</div>
         <h3 class="cert-title">Data Analysis with Python</h3>
         <p class="cert-desc">Demonstrates proficiency in data analysis using Python libraries including Pandas, Numpy, and Matplotlib. Covers data wrangling, exploratory analysis, pipeline development, and predictive modeling foundations.</p>
         <div class="cert-meta">
           <span class="cert-pill verified">✓ Verified Badge</span>
-          <span class="cert-pill">Credly</span>
-          <span class="cert-pill">Data Science</span>
+          <span class="cert-pill">Credly</span><span class="cert-pill">Data Science</span>
         </div>
         <a href="https://www.credly.com/badges/61081e03-f089-4cb9-9ea2-a86a72df76b2/linked_in_profile" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem">View Credential →</a>
       </div>
     </div>
 
-    <!-- Cambridge Card -->
-    <div class="cert-featured" style="margin-bottom:1.5rem;">
-      <div class="cert-featured-left">
-        <div class="cert-badge-wrap" style="background:linear-gradient(135deg,#1e3a5f,#0c4a6e);">
-          <div class="cert-badge-icon">🎓</div>
-        </div>
-      </div>
-      <div class="cert-featured-right">
+    <div class="cert-featured" style="margin-bottom:3rem;">
+      <div><div class="cert-badge-wrap" style="background:linear-gradient(135deg,#1e3a5f,#0c4a6e);">🎓</div></div>
+      <div>
         <div class="cert-issuer"><span class="cert-dot" style="background:#7c3aed"></span><span style="color:#a78bfa">Cambridge University Press & Assessment</span></div>
         <h3 class="cert-title">Linguaskill — B2 Upper Intermediate</h3>
-        <p class="cert-desc">Achieved a score of <strong style="color:var(--blue)">173</strong> on the Cambridge Linguaskill test, certifying upper-intermediate English proficiency (B2 level on the CEFR scale). This computer-based test assesses reading, listening, writing, and speaking skills for academic and professional contexts.</p>
+        <p class="cert-desc">Achieved a score of <strong style="color:var(--blue)">173</strong> on the Cambridge Linguaskill test, certifying upper-intermediate English proficiency (B2 level on the CEFR scale).</p>
         <div class="cert-meta">
           <span class="cert-pill verified">✓ B2 Certified</span>
-          <span class="cert-pill">Score: 173</span>
-          <span class="cert-pill">CEFR B2</span>
-          <span class="cert-pill">English</span>
+          <span class="cert-pill">Score: 173</span><span class="cert-pill">CEFR B2</span><span class="cert-pill">English</span>
         </div>
         <a href="https://drive.google.com/file/d/1ZUq7N9LGHz-qESHbvP9UoaN17Z_GySP0/view" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem">View Certificate →</a>
       </div>
     </div>
 
-    <!-- HOPEX Cards -->
     <div class="hopex-header">
       <div class="hopex-logo">HOPEX <span>Aquila</span></div>
       <p style="color:var(--gray);font-size:.875rem;">Certified by MEGA International · Bizzdesign</p>
     </div>
     <div class="hopex-grid">
-
       <div class="hopex-card certified">
-        <div class="hopex-card-top">
-          <div class="hopex-icon">🔄</div>
-          <span class="status-badge done">✓ Certified</span>
-        </div>
-        <div class="hopex-card-body">
-          <div class="hopex-module">Business Process Analysis</div>
-          <div class="hopex-level">Practitioner Level</div>
-          <p class="hopex-desc">Modeling and analyzing end-to-end business processes in compliance with BPMN standards using the HOPEX platform.</p>
-        </div>
-        <div class="hopex-card-foot">
-          <span class="cert-pill">BPMN</span><span class="cert-pill">BPA</span><span class="cert-pill">Process Modeling</span>
-        </div>
+        <div class="hopex-card-top"><div class="hopex-icon">🔄</div><span class="status-badge done">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module">Business Process Analysis</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Modeling and analyzing end-to-end business processes in compliance with BPMN standards using the HOPEX platform.</p></div>
+        <div class="hopex-card-foot"><span class="tag">BPMN</span><span class="tag">BPA</span><span class="tag">Process Modeling</span></div>
       </div>
-
       <div class="hopex-card certified">
-        <div class="hopex-card-top">
-          <div class="hopex-icon">🛡️</div>
-          <span class="status-badge done">✓ Certified</span>
-        </div>
-        <div class="hopex-card-body">
-          <div class="hopex-module">Governance, Risk & Compliance</div>
-          <div class="hopex-level">Practitioner Level</div>
-          <p class="hopex-desc">Managing risk assessments, compliance frameworks, and internal controls using HOPEX GRC suite in real-time collaborative environments.</p>
-        </div>
-        <div class="hopex-card-foot">
-          <span class="cert-pill">GRC</span><span class="cert-pill">Risk Mgmt</span><span class="cert-pill">ISO</span>
-        </div>
+        <div class="hopex-card-top"><div class="hopex-icon">🛡️</div><span class="status-badge done">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module">Governance, Risk & Compliance</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Managing risk assessments, compliance frameworks, and internal controls using HOPEX GRC suite.</p></div>
+        <div class="hopex-card-foot"><span class="tag">GRC</span><span class="tag">Risk Mgmt</span><span class="tag">ISO</span></div>
       </div>
-
       <div class="hopex-card certified">
-        <div class="hopex-card-top">
-          <div class="hopex-icon">🔍</div>
-          <span class="status-badge done">✓ Certified</span>
-        </div>
-        <div class="hopex-card-body">
-          <div class="hopex-module">Internal Audit</div>
-          <div class="hopex-level">Practitioner Level</div>
-          <p class="hopex-desc">Planning and executing audit missions, defining audit scope, recording observations and recommendations using HOPEX Internal Audit.</p>
-        </div>
-        <div class="hopex-card-foot">
-          <span class="cert-pill">Audit</span><span class="cert-pill">Internal Control</span><span class="cert-pill">Compliance</span>
-        </div>
+        <div class="hopex-card-top"><div class="hopex-icon">🔍</div><span class="status-badge done">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module">Internal Audit</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Planning and executing audit missions, defining scope, recording observations using HOPEX Internal Audit.</p></div>
+        <div class="hopex-card-foot"><span class="tag">Audit</span><span class="tag">Internal Control</span><span class="tag">Compliance</span></div>
       </div>
-
       <div class="hopex-card in-progress">
-        <div class="hopex-card-top">
-          <div class="hopex-icon">🏗️</div>
-          <span class="status-badge wip">⏳ In Progress</span>
-        </div>
-        <div class="hopex-card-body">
-          <div class="hopex-module">IT Architecture</div>
-          <div class="hopex-level">Practitioner Level</div>
-          <p class="hopex-desc">Currently pursuing certification in IT Architecture, covering application landscape, infrastructure modeling, and technology roadmaps.</p>
-        </div>
-        <div class="hopex-card-foot">
-          <span class="cert-pill">IT Architecture</span><span class="cert-pill">EA</span><span class="cert-pill">TOGAF</span>
-        </div>
+        <div class="hopex-card-top"><div class="hopex-icon">🏗️</div><span class="status-badge wip">⏳ In Progress</span></div>
+        <div class="hopex-card-body"><div class="hopex-module">IT Architecture</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Currently pursuing certification covering application landscape, infrastructure modeling, and technology roadmaps.</p></div>
+        <div class="hopex-card-foot"><span class="tag">IT Architecture</span><span class="tag">EA</span><span class="tag">TOGAF</span></div>
         <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -624,10 +629,10 @@
       <div class="contact-info">
         <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
-        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
+        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> m.ikich@bizzdesign.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
-        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
+        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
@@ -644,9 +649,15 @@
   <p>© 2026 Mohamed Ikich · Solution Engineer · Casablanca, Morocco</p>
 </footer>
 
-
-
 <script>
+// Tab switching
+function switchTab(btn, id){
+  document.querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
 // Skills
 const skills=[
   {icon:'🏗️',name:'HOPEX Platform',cat:'Enterprise Architecture',pct:92},
@@ -672,31 +683,21 @@ skills.forEach(s=>{
     <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
   </div>`;
 });
-function sendEmail(){
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const msg = document.getElementById('f-msg').value.trim();
-  if(!name || !email || !msg){ alert('Please fill in all fields.'); return; }
-  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-  const body = encodeURIComponent(
-`Hi Mohamed,
-
-My name is ${name} and I found your portfolio online.
-
-${msg}
-
-Best regards,
-${name}
-${email}`);
-  window.location.href = `mailto:ikich.mohamed.mpsi@gmail.com?subject=${subject}&body=${body}`;
-}
-
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
 },{threshold:.3});
 obs.observe(document.getElementById('skills'));
 
-
+// Contact form
+function sendEmail(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const msg=document.getElementById('f-msg').value.trim();
+  if(!name||!email||!msg){alert('Please fill in all fields.');return;}
+  const subject=encodeURIComponent(`Portfolio Contact from ${name}`);
+  const body=encodeURIComponent(`Hi Mohamed,\n\nMy name is ${name} and I found your portfolio online.\n\n${msg}\n\nBest regards,\n${name}\n${email}`);
+  window.location.href=`mailto:ikich.mohamed.mpsi@gmail.com?subject=${subject}&body=${body}`;
+}
 </script>
 </body>
 </html>
