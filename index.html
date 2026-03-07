@@ -1,379 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mohamed Ikich — Solution Engineer</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23080c14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI,sans-serif' font-weight='800' font-size='28' fill='%230ea5e9'>MI</text></svg>"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --blue:#0ea5e9;--blue2:#38bdf8;--dark:#080c14;--dark2:#0f172a;
-    --dark3:#1e293b;--white:#f0f9ff;--gray:#94a3b8;--border:#1e3a5f;
-  }
-  html{scroll-behavior:smooth;}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
-
-  /* VISITOR COUNTER */
-  .vc-wrap{display:inline-flex;margin-top:2rem;}
-  .vc-inner{display:flex;align-items:center;gap:1rem;background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.2);border-radius:16px;padding:.75rem 1.25rem;backdrop-filter:blur(8px);}
-  .vc-ring{position:relative;width:52px;height:52px;flex-shrink:0;}
-  .vc-svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);}
-  .vc-track{fill:none;stroke:rgba(14,165,233,.15);stroke-width:3;}
-  .vc-progress{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-dasharray:163;stroke-dashoffset:163;transition:stroke-dashoffset 1.5s ease;}
-  .vc-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
-  .vc-info{display:flex;flex-direction:column;gap:.2rem;}
-  .vc-label{font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
-  .vc-count{display:flex;align-items:baseline;gap:.3rem;}
-  .vc-num{font-size:1.4rem;font-weight:800;color:var(--white);font-variant-numeric:tabular-nums;}
-  .vc-unit{font-size:.72rem;color:var(--blue2);font-weight:600;}
-  .vc-status{display:flex;align-items:center;gap:.4rem;}
-  .vc-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px rgba(74,222,128,.2);animation:pulse 2s infinite;flex-shrink:0;}
-  .vc-status span:last-child{font-size:.68rem;color:var(--gray);}
-
-  /* NAV */
-  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
-  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .logo{font-size:1.2rem;font-weight:700;color:var(--blue);letter-spacing:1px;}
-  .nav-links{display:flex;gap:2rem;list-style:none;}
-  .nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:.2s;}
-  .nav-links a:hover{color:var(--blue);}
-
-  /* HERO */
-  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
-  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,165,233,.18),transparent);}
-  .hero-content{position:relative;max-width:750px;}
-  .hero-badge{display:inline-block;background:rgba(14,165,233,.15);border:1px solid var(--border);color:var(--blue2);font-size:.8rem;padding:.35rem .9rem;border-radius:99px;margin-bottom:1.5rem;letter-spacing:.5px;}
-  h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
-  h1 span{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .hero-sub{font-size:1.1rem;color:var(--gray);margin-bottom:2.5rem;line-height:1.7;}
-  .btn{display:inline-block;padding:.75rem 2rem;border-radius:8px;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;font-size:.95rem;border:none;}
-  .btn-primary{background:var(--blue);color:#fff;}
-  .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
-  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);margin-left:.75rem;}
-  .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
-  .hero-langs{display:flex;gap:.75rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
-  .lang-pill{background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);font-size:.78rem;padding:.3rem .8rem;border-radius:99px;}
-
-  /* SECTIONS */
-  section{padding:6rem 2rem;}
-  .container{max-width:1100px;margin:auto;}
-  .section-label{color:var(--blue);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;}
-  .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:.75rem;}
-  .section-sub{color:var(--gray);font-size:1rem;max-width:560px;line-height:1.7;margin-bottom:3rem;}
-
-  /* ABOUT */
-  #about{background:var(--dark2);}
-  .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
-  .about-avatar{width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:5rem;max-width:280px;}
-  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;max-width:280px;}
-  .stat{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;}
-  .stat-num{font-size:1.8rem;font-weight:800;color:var(--blue);}
-  .stat-label{font-size:.75rem;color:var(--gray);margin-top:.2rem;}
-
-  /* EXPERIENCE */
-  #experience{background:var(--dark);}
-  .timeline{position:relative;padding-left:2rem;}
-  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),transparent);}
-  .exp-item{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
-  .exp-item::before{content:'';position:absolute;left:-2.4rem;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid var(--dark);box-shadow:0 0 0 3px rgba(14,165,233,.3);}
-  .exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem;}
-  .exp-role{font-size:1.1rem;font-weight:700;}
-  .exp-company{color:var(--blue);font-weight:600;}
-  .exp-date{font-size:.8rem;color:var(--gray);background:var(--dark3);border:1px solid var(--border);padding:.25rem .7rem;border-radius:99px;white-space:nowrap;}
-  .exp-location{font-size:.82rem;color:var(--gray);margin-bottom:.75rem;}
-  .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
-  .exp-bullets li{font-size:.875rem;color:var(--gray);line-height:1.6;padding-left:1rem;position:relative;}
-  .exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
-  .exp-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
-  .tag{font-size:.72rem;background:rgba(14,165,233,.12);color:var(--blue2);padding:.2rem .6rem;border-radius:99px;}
-
-  /* PROJECTS */
-  #projects{background:var(--dark2);}
-  .proj-card{background:var(--dark);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
-  .proj-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:2rem;}
-  .proj-topbar-left{display:flex;gap:1.25rem;align-items:flex-start;}
-  .proj-icon-wrap{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:1.9rem;flex-shrink:0;}
-  .proj-eyebrow{font-size:.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:.3rem;}
-  .proj-name{font-size:1.9rem;font-weight:800;line-height:1;margin-bottom:.3rem;}
-  .proj-name span{color:var(--blue);}
-  .proj-tagline{font-size:.875rem;color:var(--gray);max-width:480px;line-height:1.5;}
-  .proj-topbar-right{display:flex;align-items:center;gap:1.5rem;flex-shrink:0;}
-  .proj-stat{text-align:center;}
-  .proj-stat-n{font-size:1.4rem;font-weight:800;color:var(--blue);}
-  .proj-stat-l{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;}
-  .proj-gh-btn{display:flex;align-items:center;gap:.4rem;background:var(--dark3);border:1px solid var(--border);color:var(--white);text-decoration:none;padding:.55rem 1.1rem;border-radius:8px;font-size:.82rem;font-weight:600;transition:.2s;}
-  .proj-gh-btn:hover{border-color:var(--blue);color:var(--blue);}
-  .proj-tabs{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow-x:auto;}
-  .proj-tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--gray);padding:.85rem 1.5rem;font-size:.875rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;font-family:inherit;}
-  .proj-tab:hover{color:var(--white);}
-  .proj-tab.active{color:var(--blue);border-bottom-color:var(--blue);background:rgba(14,165,233,.05);}
-  .proj-panel{display:none;padding:2rem;}
-  .proj-panel.active{display:block;}
-
-  /* How it works */
-  .how-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:.5rem;align-items:start;}
-  .how-card{background:var(--dark2);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:.2s;}
-  .how-card:hover{border-color:var(--blue);}
-  .how-num{font-size:.7rem;color:var(--blue);font-weight:800;letter-spacing:1px;margin-bottom:.5rem;}
-  .how-icon{font-size:1.6rem;margin-bottom:.6rem;}
-  .how-title{font-size:.95rem;font-weight:700;margin-bottom:.5rem;}
-  .how-desc{font-size:.8rem;color:var(--gray);line-height:1.6;}
-  .how-desc code,.flow-step code,.role-list li code{background:var(--dark3);color:var(--blue2);padding:.1rem .3rem;border-radius:4px;font-size:.75rem;}
-  .how-arrow{font-size:1.5rem;color:var(--blue);opacity:.5;padding-top:2.5rem;}
-
-  /* Pipeline flow */
-  .flow-wrap{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:start;overflow-x:auto;}
-  .flow-col{display:flex;flex-direction:column;gap:.6rem;}
-  .flow-actor{text-align:center;font-weight:700;font-size:.85rem;padding:.6rem;border-radius:10px;margin-bottom:.5rem;}
-  .flow-actor.student{background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);color:var(--blue2);}
-  .flow-actor.master{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.3);color:#c4b5fd;}
-  .flow-actor.prof{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80;}
-  .flow-step{font-size:.78rem;color:var(--gray);background:var(--dark2);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;line-height:1.4;}
-  .flow-step.s{border-left:3px solid var(--blue);}
-  .flow-step.m{border-left:3px solid #8b5cf6;}
-  .flow-step.p{border-left:3px solid #22c55e;}
-  .flow-step.hl{font-weight:600;color:var(--white);}
-  .flow-spacer{min-height:1.8rem;}
-  .flow-connector-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding-top:2.5rem;}
-  .flow-line{width:1px;flex:1;min-height:30px;background:var(--border);}
-  .flow-chevron{color:var(--blue);font-size:1.1rem;}
-  .flow-chevron.flip{transform:scaleX(-1);}
-  .flow-label{font-size:.62rem;color:var(--gray);text-align:center;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.5px;}
-
-  /* Roles */
-  .roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
-  .role-card{border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;}
-  .prof-card{background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);}
-  .student-card{background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.2);}
-  .system-card{background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.2);}
-  .role-icon{font-size:2rem;}
-  .role-title{font-size:1.1rem;font-weight:800;}
-  .role-list{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
-  .role-list li{font-size:.8rem;color:var(--gray);padding-left:1rem;position:relative;line-height:1.5;}
-  .role-list li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
-  .role-cmd{margin-top:.25rem;background:var(--dark3);border-radius:8px;padding:.65rem .9rem;}
-  .cmd-label{display:block;font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem;}
-  .role-cmd code{font-size:.75rem;color:var(--blue2);}
-
-  /* Tech */
-  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
-  .tech-item{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:.2s;}
-  .tech-item:hover{border-color:var(--blue);}
-  .tech-icon{font-size:1.6rem;flex-shrink:0;}
-  .tech-name{font-size:.95rem;font-weight:700;margin-bottom:.3rem;}
-  .tech-role{font-size:.78rem;color:var(--gray);line-height:1.5;}
-
-  /* EPIDEMIC MODEL CARD */
-  .ep-model-card{border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
-  .ep-model-header{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-  .ep-model-badge{font-size:.8rem;font-weight:800;padding:.35rem .9rem;border-radius:8px;letter-spacing:1px;white-space:nowrap;}
-  .ep-model-title{font-size:1rem;font-weight:700;}
-  .ep-model-sub{font-size:.78rem;color:var(--gray);}
-  .ep-model-desc{font-size:.85rem;color:var(--gray);line-height:1.7;}
-  .ep-model-desc code{background:var(--dark3);color:var(--blue2);padding:.1rem .3rem;border-radius:4px;font-size:.78rem;}
-  .ep-model-flow{display:flex;align-items:center;gap:.4rem;margin-left:auto;flex-shrink:0;}
-  .ep-node{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;}
-  .s-node{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.4);}
-  .i-node{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.4);}
-  .r-node{background:rgba(139,92,246,.2);color:#c4b5fd;border:1px solid rgba(139,92,246,.4);}
-  .a-node{background:rgba(14,165,233,.2);color:var(--blue2);border:1px solid rgba(14,165,233,.4);}
-  .ep-arrow{font-size:.7rem;color:var(--gray);white-space:nowrap;}
-  .ep-params{display:flex;gap:.5rem;flex-wrap:wrap;}
-  .ep-param{font-size:.72rem;background:var(--dark3);border:1px solid var(--border);color:var(--gray);padding:.2rem .6rem;border-radius:99px;}
-  .ep-param code{color:var(--blue2);background:none;font-size:.72rem;}
-
-  /* LEARNING */
-  #learning{background:var(--dark);}
-  .learn-banner{background:linear-gradient(135deg,rgba(14,165,233,.08),rgba(139,92,246,.08));border:1px solid var(--border);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-  .learn-banner-left{display:flex;align-items:center;gap:1.25rem;}
-  .learn-banner-icon{font-size:2.5rem;}
-  .learn-banner-title{font-size:1.1rem;font-weight:700;margin-bottom:.3rem;}
-  .learn-banner-sub{font-size:.85rem;color:var(--gray);max-width:480px;line-height:1.5;}
-  .learn-banner-right{display:flex;gap:2rem;flex-shrink:0;}
-  .learn-stat{text-align:center;}
-  .learn-stat-n{font-size:1.8rem;font-weight:800;color:var(--blue);}
-  .learn-stat-l{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;}
-  .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:1.5rem;}
-  .learn-card{background:var(--dark2);border:1px solid var(--border);border-radius:18px;padding:1.75rem;display:flex;flex-direction:column;gap:1.25rem;transition:.2s;}
-  .learn-card:hover{border-color:var(--blue);}
-  .learn-card-top{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-  .learn-card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
-  .learn-card-title{font-size:1.05rem;font-weight:700;}
-  .learn-card-org{font-size:.78rem;color:var(--gray);}
-  .learn-badge{font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:99px;margin-left:auto;white-space:nowrap;}
-  .learn-badge.active{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.3);}
-  .learn-badge.learning{background:rgba(14,165,233,.12);color:var(--blue2);border:1px solid rgba(14,165,233,.3);}
-  .learn-desc{font-size:.875rem;color:var(--gray);line-height:1.7;}
-  .learn-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.25rem;}
-
-  /* Live workflow */
-  .learn-workflow{background:var(--dark);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;}
-  .learn-workflow-header{display:flex;align-items:center;gap:.5rem;}
-  .live-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);animation:pulse 2s infinite;}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.2);}50%{box-shadow:0 0 0 6px rgba(74,222,128,.05);}}
-  .live-label{font-size:.72rem;color:#4ade80;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
-  .learn-workflow-title{font-size:.95rem;font-weight:700;}
-  .learn-workflow-desc{font-size:.8rem;color:var(--gray);line-height:1.6;}
-  .learn-wf-steps{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;overflow-x:auto;padding:.75rem;background:var(--dark2);border-radius:10px;}
-  .learn-wf-step{display:flex;flex-direction:column;align-items:center;gap:.3rem;min-width:80px;}
-  .learn-wf-step-icon{width:36px;height:36px;background:rgba(14,165,233,.12);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
-  .learn-wf-step-label{font-size:.67rem;color:var(--white);text-align:center;font-weight:600;line-height:1.3;}
-  .learn-wf-step-label span{color:var(--gray);font-weight:400;}
-  .learn-wf-arrow{color:var(--blue);font-size:1rem;opacity:.6;flex-shrink:0;}
-
-  /* Goal box */
-  .learn-goal{background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;}
-  .learn-goal-header{display:flex;align-items:center;gap:.5rem;}
-  .learn-goal-title{font-size:.82rem;font-weight:700;color:#c4b5fd;}
-  .learn-goal-desc{font-size:.8rem;color:var(--gray);line-height:1.7;}
-  .learn-goal-examples{display:flex;flex-direction:column;gap:.75rem;}
-  .learn-goal-ex{display:flex;gap:.75rem;align-items:flex-start;}
-  .learn-goal-ex-icon{width:32px;height:32px;background:rgba(139,92,246,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
-  .learn-goal-ex-title{font-size:.82rem;font-weight:700;margin-bottom:.15rem;}
-  .learn-goal-ex-sub{font-size:.75rem;color:var(--gray);line-height:1.4;}
-
-  /* SKILLS */
-  #skills{background:var(--dark2);}
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
-  .skill-card{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:1.5rem;}
-  .skill-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;}
-  .skill-icon{width:40px;height:40px;border-radius:10px;background:rgba(14,165,233,.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
-  .skill-name{font-weight:700;font-size:.95rem;}
-  .skill-cat{font-size:.75rem;color:var(--gray);}
-  .bar-wrap{background:var(--dark3);border-radius:99px;height:6px;overflow:hidden;}
-  .bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0;transition:width 1.2s ease;}
-
-  /* EDUCATION */
-  #education{background:var(--dark);}
-  .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
-  .edu-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.2s;}
-  .edu-card:hover{border-color:var(--blue);}
-  .edu-icon{font-size:2rem;margin-bottom:1rem;}
-  .edu-degree{font-size:1rem;font-weight:700;margin-bottom:.3rem;}
-  .edu-school{color:var(--blue);font-size:.9rem;font-weight:600;margin-bottom:.3rem;}
-  .edu-period{font-size:.8rem;color:var(--gray);}
-  .edu-location{font-size:.8rem;color:var(--gray);}
-
-  /* CERTIFICATIONS */
-  #certifications{background:var(--dark2);}
-  .cert-featured{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:180px 1fr;gap:2.5rem;align-items:center;margin-bottom:1.5rem;position:relative;overflow:hidden;}
-  .cert-featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(14,165,233,.07),transparent);pointer-events:none;}
-  .cert-badge-wrap{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#0c4a6e,#1e40af);display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin:auto;box-shadow:0 0 0 8px rgba(14,165,233,.1),0 0 0 16px rgba(14,165,233,.05);}
-  .cert-issuer{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem;}
-  .cert-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;}
-  .cert-title{font-size:1.6rem;font-weight:800;margin-bottom:.75rem;}
-  .cert-desc{color:var(--gray);font-size:.875rem;line-height:1.7;margin-bottom:1rem;}
-  .cert-meta{display:flex;gap:.5rem;flex-wrap:wrap;}
-  .cert-pill{font-size:.72rem;background:rgba(14,165,233,.1);border:1px solid var(--border);color:var(--blue2);padding:.25rem .7rem;border-radius:99px;}
-  .cert-pill.verified{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:#4ade80;}
-  .hopex-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding:.75rem 1.25rem;background:var(--dark);border:1px solid var(--border);border-radius:12px;}
-  .hopex-logo{font-size:1.1rem;font-weight:800;}
-  .hopex-logo span{color:var(--blue);}
-  .hopex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;}
-  .hopex-card{background:var(--dark);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.25s;}
-  .hopex-card:hover{transform:translateY(-4px);border-color:var(--blue);}
-  .hopex-card.in-progress{border-color:rgba(251,191,36,.2);}
-  .hopex-card.in-progress:hover{border-color:rgba(251,191,36,.5);}
-  .hopex-card-top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.25rem .5rem;}
-  .hopex-icon{width:44px;height:44px;border-radius:12px;background:rgba(14,165,233,.12);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
-  .status-badge{font-size:.7rem;padding:.25rem .7rem;border-radius:99px;font-weight:600;}
-  .status-badge.done{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.3);}
-  .status-badge.wip{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.3);}
-  .hopex-card-body{padding:.75rem 1.25rem 1rem;flex:1;}
-  .hopex-module{font-size:1rem;font-weight:700;margin-bottom:.2rem;}
-  .hopex-level{font-size:.75rem;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;}
-  .hopex-desc{font-size:.82rem;color:var(--gray);line-height:1.6;}
-  .hopex-card-foot{padding:.75rem 1.25rem 1.25rem;display:flex;gap:.4rem;flex-wrap:wrap;}
-  .progress-bar-wrap{height:3px;background:var(--dark3);}
-  .progress-bar-fill{height:100%;width:65%;background:linear-gradient(90deg,#fbbf24,#f59e0b);}
-
-  /* CONTACT */
-  #contact{background:var(--dark);}
-  .contact-box{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-  .contact-info p{color:var(--gray);line-height:1.8;margin-bottom:2rem;}
-  .contact-link{display:flex;align-items:center;gap:.75rem;color:var(--gray);text-decoration:none;margin-bottom:1rem;transition:.2s;font-size:.9rem;word-break:break-all;}
-  .contact-link:hover{color:var(--blue);}
-  .contact-link span{font-size:1.1rem;flex-shrink:0;}
-  .form-group{margin-bottom:1.25rem;}
-  .form-group label{display:block;font-size:.8rem;color:var(--gray);margin-bottom:.4rem;letter-spacing:.5px;}
-  .form-group input,.form-group textarea{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;color:var(--white);font-size:.9rem;outline:none;transition:.2s;font-family:inherit;}
-  .form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
-  .form-group textarea{resize:vertical;min-height:100px;}
-
-  /* FOOTER */
-  footer{background:var(--dark2);border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--gray);font-size:.85rem;}
-
-  /* RESPONSIVE */
-  @media(max-width:900px){
-    .how-grid{grid-template-columns:1fr;gap:1rem;}
-    .how-arrow{display:none;}
-    .flow-wrap{grid-template-columns:1fr;}
-    .flow-connector-col{display:none;}
-  }
-  @media(max-width:700px){
-    .about-grid,.contact-box,.cert-featured{grid-template-columns:1fr;}
-    .proj-topbar-right{display:none;}
-    .nav-links{gap:1rem;}
-  }
-</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23080c14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='800' font-size='28' fill='%230ea5e9'>MI</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
   <div class="nav-inner">
-    <div class="logo">MI/</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#learning">Learning</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <div class="logo">MI<span class="logo-dot">.</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" data-i18n="nav.about">About</a></li>
+      <li><a href="#metrics" data-i18n="nav.metrics">Metrics</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#education" data-i18n="nav.education">Education</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-flag">🇫🇷</span>
+        <span class="lang-text">FR</span>
+      </button>
+      <a href="#contact" class="nav-cta" data-i18n="nav.cta">Hire Me</a>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — Stripe/Apple style -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-grid-overlay"></div>
+
   <div class="hero-content">
-    <div class="hero-badge">✦ Open to new opportunities · Casablanca, Morocco</div>
-    <h1>Hi, I'm <span>Mohamed Ikich</span></h1>
-    <p class="hero-sub">Solution Engineer with a passion for Enterprise Architecture, Risk Management & Compliance — bridging complex business needs with tailored technical solutions at scale.</p>
-    <!-- Visitor Counter -->
+    <div class="hero-eyebrow">
+      <span class="hero-status-dot"></span>
+      <span data-i18n="hero.status">Available for opportunities · Casablanca, Morocco</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="hero-name">Mohamed<br>Ikich</span>
+    </h1>
+
+    <div class="hero-role-wrap">
+      <span class="hero-role-prefix" data-i18n="hero.prefix">Solution Engineer at</span>
+      <span class="hero-company">Bizzdesign</span>
+      <span class="hero-role-sep">·</span>
+      <span class="hero-role-prev">ex-Airbus</span>
+    </div>
+
+    <p class="hero-desc" data-i18n="hero.desc">
+      ENSEEIHT-trained engineer bridging enterprise architecture and software delivery.
+      I turn complex business problems into elegant, scalable solutions.
+    </p>
+
+    <div class="hero-langs">
+      <span class="lang-pill">🇫🇷 Français</span>
+      <span class="lang-pill">🇬🇧 English</span>
+      <span class="lang-pill">🇸🇦 العربية</span>
+      <span class="lang-pill">🇪🇸 Español</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-hero-primary" data-i18n="hero.cta1">Let's Connect →</a>
+      <a href="#experience" class="btn-hero-ghost" data-i18n="hero.cta2">View Work</a>
+    </div>
+
+    <!-- Visitor counter -->
     <div class="vc-wrap" id="vcWrap">
       <div class="vc-inner">
         <div class="vc-ring">
-          <svg viewBox="0 0 60 60" class="vc-svg">
-            <circle cx="30" cy="30" r="26" class="vc-track"/>
-            <circle cx="30" cy="30" r="26" class="vc-progress" id="vcProgress"/>
+          <svg class="vc-svg" viewBox="0 0 52 52">
+            <circle class="vc-track" cx="26" cy="26" r="23"/>
+            <circle class="vc-progress" id="vcProgress" cx="26" cy="26" r="23"/>
           </svg>
           <div class="vc-icon">👁️</div>
         </div>
         <div class="vc-info">
-          <div class="vc-label">Portfolio Views</div>
-          <div class="vc-count" id="visitorCount">
+          <div class="vc-label" data-i18n="vc.label">Portfolio Views</div>
+          <div class="vc-count">
             <span class="vc-num" id="vcNum">—</span>
-            <span class="vc-unit">visits</span>
+            <span class="vc-unit" data-i18n="vc.unit">visits</span>
           </div>
-          <div class="vc-status" id="vcStatus">
+          <div class="vc-status">
             <span class="vc-dot"></span>
-            <span id="vcStatusText">Loading...</span>
+            <span id="vcStatusText" data-i18n="vc.loading">Loading…</span>
           </div>
         </div>
       </div>
     </div>
-    <a href="#experience" class="btn btn-primary" style="margin-top:1.5rem;">View My Experience</a>
-    <a href="#contact" class="btn btn-outline" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</a>
-    <div class="hero-langs">
-      <span class="lang-pill">🇫🇷 French</span>
-      <span class="lang-pill">🇬🇧 English</span>
-      <span class="lang-pill">🇩🇪 German</span>
-      <span class="lang-pill">🇲🇦 Arabic</span>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span data-i18n="hero.scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- METRICS DASHBOARD -->
+<section id="metrics">
+  <div class="container">
+    <div class="metrics-header">
+      <div>
+        <p class="section-label" data-i18n="metrics.label">By The Numbers</p>
+        <h2 class="section-title" data-i18n="metrics.title">Impact Dashboard</h2>
+      </div>
+      <div class="metrics-live-badge">
+        <span class="live-dot"></span>
+        <span data-i18n="metrics.live">Career Metrics · 2023–2026</span>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-primary">
+        <div class="kpi-icon">🏗️</div>
+        <div class="kpi-value" data-target="12" data-suffix="+">0</div>
+        <div class="kpi-label" data-i18n="kpi.clients">Enterprise Clients Served</div>
+        <div class="kpi-trend up">↑ <span data-i18n="kpi.clients.sub">HOPEX & Bizzdesign deployments</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⚡</div>
+        <div class="kpi-value" data-target="40" data-suffix="%">0</div>
+        <div class="kpi-label" data-i18n="kpi.time">Avg. Time-to-Value Reduction</div>
+        <div class="kpi-trend up">↑ <span data-i18n="kpi.time.sub">via automation & workflow design</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🌍</div>
+        <div class="kpi-value" data-target="4" data-suffix="">0</div>
+        <div class="kpi-label" data-i18n="kpi.langs">Languages Spoken</div>
+        <div class="kpi-trend neutral">→ <span>FR · EN · AR · DE</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📜</div>
+        <div class="kpi-value" data-target="3" data-suffix="">0</div>
+        <div class="kpi-label" data-i18n="kpi.certs">HOPEX Certifications</div>
+        <div class="kpi-trend up">↑ <span data-i18n="kpi.certs.sub">+1 in progress</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🎓</div>
+        <div class="kpi-value" data-target="2" data-suffix=" yrs">0</div>
+        <div class="kpi-label" data-i18n="kpi.exp">Professional Experience</div>
+        <div class="kpi-trend neutral">→ <span>Airbus → MEGA → Bizzdesign</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🚀</div>
+        <div class="kpi-value" data-target="2" data-suffix="">0</div>
+        <div class="kpi-label" data-i18n="kpi.projects">Open-Source Projects</div>
+        <div class="kpi-trend up">↑ <span>AutoTester · EpidemicSim</span></div>
+      </div>
+    </div>
+
+    <!-- Journey bar -->
+    <div class="journey-bar">
+      <div class="journey-title" data-i18n="journey.title">Career Trajectory</div>
+      <div class="journey-track">
+        <div class="journey-node active">
+          <div class="jn-dot"></div>
+          <div class="jn-year">2018</div>
+          <div class="jn-label">CPGE · M6 Excellence</div>
+        </div>
+        <div class="journey-line"></div>
+        <div class="journey-node active">
+          <div class="jn-dot"></div>
+          <div class="jn-year">2020</div>
+          <div class="jn-label">ENSEEIHT · INP Toulouse</div>
+        </div>
+        <div class="journey-line"></div>
+        <div class="journey-node active">
+          <div class="jn-dot"></div>
+          <div class="jn-year">2023</div>
+          <div class="jn-label">Airbus · Intern</div>
+        </div>
+        <div class="journey-line"></div>
+        <div class="journey-node active">
+          <div class="jn-dot"></div>
+          <div class="jn-year">2024</div>
+          <div class="jn-label">MEGA International · SE</div>
+        </div>
+        <div class="journey-line"></div>
+        <div class="journey-node current">
+          <div class="jn-dot"></div>
+          <div class="jn-year">2025</div>
+          <div class="jn-label" data-i18n="journey.now">Bizzdesign · SE · Now</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -382,22 +200,43 @@
 <section id="about">
   <div class="container">
     <div class="about-grid">
-      <div>
-        <div class="about-avatar">👨‍💻</div>
-        <div class="about-stats">
-          <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
-          <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Enterprise Clients</div></div>
-          <div class="stat"><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
-          <div class="stat"><div class="stat-num">2</div><div class="stat-label">Countries</div></div>
+      <div class="about-left">
+        <p class="section-label" data-i18n="about.label">Profile</p>
+        <h2 class="section-title" data-i18n="about.title">Engineering meets<br><em>Strategy</em></h2>
+        <p class="about-text" data-i18n="about.p1">
+          Graduate of <strong>ENSEEIHT (INP Toulouse)</strong> in Computer Science & Telecommunications — one of France's top engineering schools. My path: from preparatory classes at Mohamed VI School of Excellence in Benguerir to building enterprise solutions at Airbus, MEGA International, and now Bizzdesign.
+        </p>
+        <p class="about-text" data-i18n="about.p2">
+          I specialize in the intersection of <strong>enterprise architecture</strong>, <strong>software engineering</strong>, and <strong>business process optimization</strong>. I speak the language of both CTOs and CFOs.
+        </p>
+        <div class="about-tags">
+          <span class="atag">Enterprise Architecture</span>
+          <span class="atag">Solution Engineering</span>
+          <span class="atag">HOPEX / BPMN</span>
+          <span class="atag">Python · Java · .NET</span>
+          <span class="atag">Docker · AWS</span>
+          <span class="atag">GRC & Compliance</span>
         </div>
       </div>
-      <div>
-        <p class="section-label">About Me</p>
-        <h2 class="section-title">Turning business complexity into <span style="color:var(--blue)">elegant solutions</span></h2>
-        <p style="color:var(--gray);line-height:1.8;margin-bottom:1.25rem;">I'm a Solution Engineer at Bizzdesign, based in Casablanca, Morocco, with an Engineering degree in Computer Science and Telecommunications from INP Toulouse – ENSEEIHT. I specialize in Enterprise Architecture, Risk Management, and Compliance using the HOPEX platform.</p>
-        <p style="color:var(--gray);line-height:1.8;margin-bottom:1.25rem;">I've worked with major Moroccan organizations including OCP, INWI, CDG, TangerMed, SCR, and Al Omrane, delivering customized solutions aligned with ISO standards and BPMN methodology.</p>
-        <p style="color:var(--gray);line-height:1.8;margin-bottom:2rem;">Previously, I interned at Airbus in Toulouse where I designed and deployed a robust web application for onboard aircraft computer data management using Python, Django, and Docker.</p>
-        <a href="#contact" class="btn btn-primary">Let's Work Together →</a>
+      <div class="about-right">
+        <div class="about-card-stack">
+          <div class="about-stat-card">
+            <div class="asc-num">Top 5%</div>
+            <div class="asc-label" data-i18n="about.stat1">ENSEEIHT Graduate Class</div>
+          </div>
+          <div class="about-stat-card">
+            <div class="asc-num">Airbus</div>
+            <div class="asc-label" data-i18n="about.stat2">Aerospace internship experience</div>
+          </div>
+          <div class="about-stat-card">
+            <div class="asc-num">4 langs</div>
+            <div class="asc-label" data-i18n="about.stat3">FR · EN · AR · DE</div>
+          </div>
+          <div class="about-stat-card highlight">
+            <div class="asc-num">~2 yrs</div>
+            <div class="asc-label" data-i18n="about.stat4">Enterprise software experience</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -406,53 +245,88 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <p class="section-label">Career</p>
-    <h2 class="section-title">Professional Experience</h2>
-    <p class="section-sub">Delivering tailored enterprise solutions for leading organizations across Morocco and beyond.</p>
+    <p class="section-label" data-i18n="exp.label">Career</p>
+    <h2 class="section-title" data-i18n="exp.title">Experience</h2>
+    <p class="section-sub" data-i18n="exp.sub">A deliberate career building depth in enterprise architecture and solution engineering across aerospace, consulting, and SaaS.</p>
+
     <div class="timeline">
+
       <div class="exp-item">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Solution Engineer <span class="exp-company">@ Bizzdesign</span></div>
-            <div class="exp-location">📍 Casablanca, Morocco</div>
-          </div>
-          <div class="exp-date">June 2024 – Present</div>
+        <div class="exp-marker">
+          <div class="exp-dot"></div>
+          <div class="exp-company-logo bizzdesign">BD</div>
         </div>
-        <ul class="exp-bullets">
-          <li>Led the implementation of a risk assessment model for a major port operator client, aligning with their risk management requirements.</li>
-          <li>Supported a public financial institution in migrating from HOPEX V4 to HOPEX Aquila, focusing on ISO compliance with close stakeholder collaboration.</li>
-          <li>Customized HOPEX Risk Management & Compliance solutions for an insurance client, managing scope and client meetings to deliver tailored outcomes.</li>
-          <li>Developed automated Word report generation from the HOPEX platform for a real estate client using the Aspose Java library.</li>
-          <li>Built a comparative business process report for an industrial client combining VBScript for data extraction with Java, HTML, and CSS for dynamic reporting.</li>
-          <li>Customized HOPEX Business Process Analysis, Risk Management, and Internal Control solutions for a major telecom operator.</li>
-          <li>Modeled end-to-end business processes for a large industrial group using HOPEX in compliance with BPMN standards.</li>
-          <li>Led business process modeling for a government agency and managed successful migration from HOPEX V5 to HOPEX Aquila 6.2.3.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">Java</span><span class="tag">HOPEX</span><span class="tag">VBScript</span>
-          <span class="tag">C#</span><span class="tag">.NET</span><span class="tag">HTML/CSS</span>
-          <span class="tag">Maven</span><span class="tag">Git</span><span class="tag">BPMN</span>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" data-i18n="exp.bizzdesign.role">Solution Engineer</div>
+              <div class="exp-company">Bizzdesign</div>
+              <div class="exp-location">📍 Casablanca, Morocco</div>
+            </div>
+            <div class="exp-date" data-i18n="exp.bizzdesign.date">Jan 2025 — Present</div>
+          </div>
+          <ul class="exp-bullets">
+            <li data-i18n="exp.bizzdesign.b1">Lead client kickoffs, pre-sales demos, and discovery workshops — translating ambiguous business requirements into scoped HOPEX solutions for GRC, Internal Audit, and BPA use cases.</li>
+            <li data-i18n="exp.bizzdesign.b2">Assess customization complexity for client change requests, propose pragmatic HOPEX-native solutions, and own delivery end-to-end — turning complex compliance needs into elegant platform configurations.</li>
+            <li data-i18n="exp.bizzdesign.b3">Build custom reports and dashboards consuming HOPEX REST APIs and VBScript — automating risk, audit, and process reporting pipelines that previously required hours of manual consolidation.</li>
+            <li data-i18n="exp.bizzdesign.b4">Onboard and upskill clients through structured training programs, accelerating time-to-value and platform adoption across banking, insurance, and public sector accounts.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Bizzdesign</span><span class="tag">HOPEX</span><span class="tag">n8n</span><span class="tag">Power Automate</span><span class="tag">EA</span>
+          </div>
         </div>
       </div>
+
       <div class="exp-item">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Software Development Engineer <span class="exp-company">@ Airbus</span></div>
-            <div class="exp-location">📍 Toulouse, France</div>
-          </div>
-          <div class="exp-date">Apr 2023 – Nov 2023</div>
+        <div class="exp-marker">
+          <div class="exp-dot"></div>
+          <div class="exp-company-logo mega">ME</div>
         </div>
-        <ul class="exp-bullets">
-          <li>Designed a web application based on a dedicated database model for onboard aircraft computers.</li>
-          <li>Built a complete Docker image of the application to ensure deployment flexibility and consistency.</li>
-          <li>Performed performance and security testing to deliver a robust and reliable solution.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">Docker</span>
-          <span class="tag">SQL</span><span class="tag">HTML/CSS</span><span class="tag">jQuery</span>
-          <span class="tag">Git</span><span class="tag">Scrum</span><span class="tag">XML</span>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" data-i18n="exp.mega.role">Solution Engineer</div>
+              <div class="exp-company">MEGA International</div>
+              <div class="exp-location">📍 Casablanca, Morocco</div>
+            </div>
+            <div class="exp-date" data-i18n="exp.mega.date">Jun 2024 — Dec 2024</div>
+          </div>
+          <ul class="exp-bullets">
+            <li data-i18n="exp.mega.b1">Deployed and configured the HOPEX enterprise architecture platform for 12+ clients across banking, insurance, and public sector.</li>
+            <li data-i18n="exp.mega.b2">Developed custom VBScript macros and BPMN models to automate client reporting, reducing manual effort by ~40%.</li>
+            <li data-i18n="exp.mega.b3">Achieved 3 HOPEX Aquila certifications (BPA, GRC, Internal Audit) and actively pursuing IT Architecture certification.</li>
+            <li data-i18n="exp.mega.b4">Implemented REST API integrations between HOPEX and external features we have built as complex reporting features, etc..</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">HOPEX</span><span class="tag">VBScript</span><span class="tag">BPMN</span><span class="tag">REST API</span><span class="tag">GRC</span><span class="tag">Java</span>
+          </div>
         </div>
       </div>
+
+      <div class="exp-item">
+        <div class="exp-marker">
+          <div class="exp-dot"></div>
+          <div class="exp-company-logo airbus">AB</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" data-i18n="exp.airbus.role">Software Engineer Intern</div>
+              <div class="exp-company">Airbus</div>
+              <div class="exp-location">📍 Toulouse, France</div>
+            </div>
+            <div class="exp-date" data-i18n="exp.airbus.date">2023</div>
+          </div>
+          <ul class="exp-bullets">
+            <li data-i18n="exp.airbus.b1">Contributed to internal tooling and software systems within one of Europe's largest aerospace companies.</li>
+            <li data-i18n="exp.airbus.b2">Worked in an Agile environment applying rigorous engineering standards to mission-critical software.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">Java</span><span class="tag">Git</span><span class="tag">Agile</span><span class="tag">Aerospace</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -460,379 +334,218 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <p class="section-label">Personal Projects</p>
-    <h2 class="section-title">What I've Built</h2>
-    <p class="section-sub">Academic and personal projects showcasing engineering depth and software craftsmanship.</p>
+    <p class="section-label" data-i18n="proj.label">Portfolio</p>
+    <h2 class="section-title" data-i18n="proj.title">Projects</h2>
+    <p class="section-sub" data-i18n="proj.sub">Engineering work that demonstrates system design, algorithmic thinking, and automation expertise.</p>
+
+    <!-- AutoTester -->
     <div class="proj-card">
       <div class="proj-topbar">
         <div class="proj-topbar-left">
           <div class="proj-icon-wrap">🤖</div>
           <div>
-            <div class="proj-eyebrow">Final Year Project · ENSEEIHT · Team of 5</div>
-            <div class="proj-name">AutoTester <span>2.0</span></div>
-            <div class="proj-tagline">CI/CD framework that automatically grades student code — zero professor intervention required.</div>
+            <div class="proj-eyebrow">Academic Platform · ENSEEIHT SN · Team of 4</div>
+            <div class="proj-name">Auto<span>Tester</span></div>
+            <div class="proj-tagline" data-i18n="proj.autotester.tagline">A fully automated CI/CD testing pipeline for evaluating student Java projects via GitLab, Docker, and a custom Python orchestration engine.</div>
           </div>
         </div>
         <div class="proj-topbar-right">
-          <div class="proj-stat"><div class="proj-stat-n">96.5%</div><div class="proj-stat-l">Python</div></div>
-          <div class="proj-stat"><div class="proj-stat-n">5</div><div class="proj-stat-l">Contributors</div></div>
-          <a href="https://github.com/momoikich/Autotester2.0" target="_blank" class="proj-gh-btn">🐙 GitHub</a>
+          <div class="proj-stat"><div class="proj-stat-n">150+</div><div class="proj-stat-l" data-i18n="proj.students">Students</div></div>
+          <div class="proj-stat"><div class="proj-stat-n">4</div><div class="proj-stat-l" data-i18n="proj.roles">Roles</div></div>
+          <a href="https://github.com/momoikich" target="_blank" class="proj-gh-btn">⭐ GitHub</a>
         </div>
       </div>
 
       <div class="proj-tabs">
-        <button class="proj-tab active" onclick="switchTab(this,'how')">How It Works</button>
-        <button class="proj-tab" onclick="switchTab(this,'flow')">Pipeline Flow</button>
-        <button class="proj-tab" onclick="switchTab(this,'roles')">Roles</button>
-        <button class="proj-tab" onclick="switchTab(this,'tech')">Tech Stack</button>
+        <button class="proj-tab active" onclick="switchTab(this,'at-overview')" data-i18n="tab.overview">Overview</button>
+        <button class="proj-tab" onclick="switchTab(this,'at-pipeline')" data-i18n="tab.pipeline">Pipeline</button>
+        <button class="proj-tab" onclick="switchTab(this,'at-roles')" data-i18n="tab.roles">System Roles</button>
+        <button class="proj-tab" onclick="switchTab(this,'at-tech')" data-i18n="tab.tech">Tech Stack</button>
       </div>
 
-      <!-- HOW IT WORKS -->
-      <div class="proj-panel active" id="tab-how">
+      <div class="proj-panel active" id="tab-at-overview">
         <div class="how-grid">
-          <div class="how-card">
-            <div class="how-num">01</div>
-            <div class="how-icon">⚙️</div>
-            <div class="how-title">Professor Configures</div>
-            <div class="how-desc">The professor writes a <code>config.py</code> defining test scenarios — each with tools (Java compiler, JUnit, Blackbox...), attempt limits, cooldown delays, visibility flags, and penalty weights.</div>
-          </div>
+          <div class="how-card"><div class="how-num">01</div><div class="how-icon">📥</div><div class="how-title" data-i18n="at.step1.title">Student Push</div><div class="how-desc" data-i18n="at.step1.desc">Student commits code to their GitLab repository. A unique trigger token fires the pipeline automatically.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">02</div>
-            <div class="how-icon">📝</div>
-            <div class="how-title">Student Requests Tests</div>
-            <div class="how-desc">The student edits <code>modalites.txt</code> — changing <code>non</code> to <code>oui</code> next to each scenario they want evaluated — then commits and pushes their work.</div>
-          </div>
+          <div class="how-card"><div class="how-num">02</div><div class="how-icon">🐋</div><div class="how-title" data-i18n="at.step2.title">Docker Execution</div><div class="how-desc" data-i18n="at.step2.desc">A dedicated Docker image spins up, clones the student repo, and validates <code>modalites.txt</code> integrity and attempt limits.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">03</div>
-            <div class="how-icon">🔁</div>
-            <div class="how-title">Pipeline Auto-Triggers</div>
-            <div class="how-desc">The student's GitLab pipeline fires on commit and uses a trigger token to launch the AutoTester 2.0 master pipeline — no manual action from the professor required.</div>
-          </div>
+          <div class="how-card"><div class="how-num">03</div><div class="how-icon">✅</div><div class="how-title" data-i18n="at.step3.title">Test Suite</div><div class="how-desc" data-i18n="at.step3.desc">JUnit, Blackbox testing, Checkstyle static analysis, and compiler checks run inside isolated scenarios.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">04</div>
-            <div class="how-icon">📊</div>
-            <div class="how-title">Feedback Committed Back</div>
-            <div class="how-desc">AutoTester runs each selected scenario inside a Docker container, computes penalties, and commits a structured feedback report directly to the student's evaluation branch.</div>
-          </div>
+          <div class="how-card"><div class="how-num">04</div><div class="how-icon">📝</div><div class="how-title" data-i18n="at.step4.title">Feedback Commit</div><div class="how-desc" data-i18n="at.step4.desc">Structured feedback is automatically committed back to the student's branch with a score and detailed test report.</div></div>
         </div>
       </div>
 
-      <!-- PIPELINE FLOW -->
-      <div class="proj-panel" id="tab-flow">
+      <div class="proj-panel" id="tab-at-pipeline">
         <div class="flow-wrap">
           <div class="flow-col">
-            <div class="flow-actor student">👨‍🎓 Student Repo</div>
-            <div class="flow-step s">Edits <code>modalites.txt</code></div>
-            <div class="flow-step s">git commit &amp; push</div>
-            <div class="flow-step s hl">gitlab-ci.yml triggers</div>
+            <div class="flow-actor student" data-i18n="flow.student">👨‍💻 Student</div>
+            <div class="flow-step s hl">git push → trigger token fires</div>
             <div class="flow-spacer"></div>
-            <div class="flow-step s">Receives feedback on <code>eval</code> branch</div>
+            <div class="flow-step s">Receives feedback commit on branch</div>
+            <div class="flow-step s">Views score + test report in GitLab</div>
           </div>
-          <div class="flow-connector-col">
-            <div class="flow-line"></div>
-            <div class="flow-chevron">⟶</div>
-            <div class="flow-label">trigger token</div>
-            <div class="flow-line"></div>
-            <div class="flow-chevron flip">⟵</div>
-            <div class="flow-label">git commit back</div>
-          </div>
+          <div class="flow-connector-col"><div class="flow-line"></div><div class="flow-chevron">›</div><div class="flow-line"></div></div>
           <div class="flow-col">
-            <div class="flow-actor master">🤖 AutoTester Pipeline</div>
-            <div class="flow-step m">Reads <code>modalites.txt</code></div>
-            <div class="flow-step m">Loads <code>config.py</code> scenarios</div>
-            <div class="flow-step m hl">Runs inside Docker container</div>
-            <div class="flow-step m">Executes selected scenarios</div>
-            <div class="flow-step m">Computes penalties &amp; results</div>
+            <div class="flow-actor master" data-i18n="flow.autotester">🤖 AutoTester</div>
+            <div class="flow-step m hl">Cross-project pipeline triggered</div>
+            <div class="flow-step m">Docker image pulled & started</div>
+            <div class="flow-step m">modalites.txt validated</div>
+            <div class="flow-step m">Attempt limits & cooldown enforced</div>
+            <div class="flow-step m hl">Test tools executed in scenarios</div>
+            <div class="flow-step m">Results structured as JSON</div>
+            <div class="flow-step m hl">Feedback committed to student repo</div>
           </div>
-          <div class="flow-connector-col">
-            <div class="flow-line"></div>
-            <div class="flow-chevron">⟶</div>
-            <div class="flow-label">reads config</div>
-            <div class="flow-line"></div>
-          </div>
+          <div class="flow-connector-col"><div class="flow-line"></div><div class="flow-chevron">›</div><div class="flow-line"></div></div>
           <div class="flow-col">
-            <div class="flow-actor prof">👨‍🏫 Professor Repo</div>
-            <div class="flow-step p"><code>config.py</code> — scenarios</div>
-            <div class="flow-step p"><code>__fournis/</code> — base files</div>
-            <div class="flow-step p">students.csv</div>
-            <div class="flow-step p hl">JUnit / Checkstyle config</div>
+            <div class="flow-actor prof" data-i18n="flow.professor">👨‍🏫 Professor</div>
+            <div class="flow-step p">Configures scenarios &amp; scoring rules</div>
+            <div class="flow-step p hl">Sets feat3p test parameters</div>
+            <div class="flow-spacer"></div>
+            <div class="flow-step p">Views all student results in dashboard</div>
+            <div class="flow-step p hl">Exports grade reports</div>
           </div>
         </div>
       </div>
 
-      <!-- ROLES -->
-      <div class="proj-panel" id="tab-roles">
+      <div class="proj-panel" id="tab-at-roles">
         <div class="roles-grid">
+          <div class="role-card student-card">
+            <div class="role-icon">👨‍💻</div>
+            <div class="role-title" data-i18n="role.student">Student Developer</div>
+            <ul class="role-list">
+              <li data-i18n="role.student.l1">Writes Java implementations per assignment spec</li>
+              <li data-i18n="role.student.l2">Commits to personal GitLab repository</li>
+              <li data-i18n="role.student.l3">Trigger token fires on each push</li>
+              <li data-i18n="role.student.l4">Receives instant automated feedback</li>
+            </ul>
+          </div>
           <div class="role-card prof-card">
             <div class="role-icon">👨‍🏫</div>
-            <div class="role-title">Professor</div>
+            <div class="role-title" data-i18n="role.professor">Professor / Evaluator</div>
             <ul class="role-list">
-              <li>Writes <code>config.py</code> with test scenarios</li>
-              <li>Defines attempt limits &amp; cooldown delays</li>
-              <li>Sets scenario visibility for hidden eval tests</li>
-              <li>Assigns penalty weights per scenario</li>
-              <li>Can trigger <code>evaluateAll</code> for entire cohort</li>
-              <li>Configures GitLab CI pipeline &amp; trigger tokens</li>
+              <li data-i18n="role.prof.l1">Defines test scenarios using feat3p CLI</li>
+              <li data-i18n="role.prof.l2">Sets scoring weights, attempt limits, deadlines</li>
+              <li data-i18n="role.prof.l3">Accesses consolidated grade dashboard</li>
             </ul>
-            <div class="role-cmd"><span class="cmd-label">Command</span><code>feat3p evaluateAll &lt;commit&gt; &lt;tp&gt; &lt;promo.csv&gt;</code></div>
-          </div>
-          <div class="role-card student-card">
-            <div class="role-icon">👨‍🎓</div>
-            <div class="role-title">Student</div>
-            <ul class="role-list">
-              <li>Writes code inside their GitLab repository</li>
-              <li>Edits <code>modalites.txt</code> to request test runs</li>
-              <li>Changes <code>non → oui</code> for desired scenarios</li>
-              <li>Commits &amp; pushes to trigger evaluation</li>
-              <li>Reads feedback report on <code>eval</code> branch</li>
-              <li>Respects attempt limits and cooldown periods</li>
-            </ul>
-            <div class="role-cmd"><span class="cmd-label">modalites.txt</span><code>scenario1 : oui &nbsp;// requests this test</code></div>
           </div>
           <div class="role-card system-card">
             <div class="role-icon">🤖</div>
-            <div class="role-title">AutoTester System</div>
+            <div class="role-title" data-i18n="role.autotester">AutoTester System</div>
             <ul class="role-list">
-              <li>Listens for student commit via trigger token</li>
-              <li>Runs inside a dedicated Docker image</li>
-              <li>Validates <code>modalites.txt</code> integrity</li>
-              <li>Enforces attempt limits &amp; cooldown delays</li>
-              <li>Executes test tools: JUnit, Blackbox, Compiler…</li>
-              <li>Commits structured feedback back to student</li>
+              <li data-i18n="role.auto.l1">Listens for student commits via trigger token</li>
+              <li data-i18n="role.auto.l2">Runs inside a dedicated Docker image</li>
+              <li data-i18n="role.auto.l3">Executes JUnit, Blackbox, Checkstyle, Compiler</li>
+              <li data-i18n="role.auto.l4">Commits structured feedback back to student</li>
             </ul>
             <div class="role-cmd"><span class="cmd-label">Docker image</span><code>registry.gitlab.com/projet-long/autotester2</code></div>
           </div>
         </div>
       </div>
 
-      <!-- TECH STACK -->
-      <div class="proj-panel" id="tab-tech">
+      <div class="proj-panel" id="tab-at-tech">
         <div class="tech-grid">
-          <div class="tech-item"><div class="tech-icon">🐍</div><div><div class="tech-name">Python 3</div><div class="tech-role">Core framework — scenario engine, CLI (feat3p), pipeline orchestration</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🦊</div><div><div class="tech-name">GitLab CI/CD</div><div class="tech-role">Cross-project pipeline triggering between student repos and AutoTester master</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🐋</div><div><div class="tech-name">Docker</div><div class="tech-role">Custom image with all dependencies for consistent, portable test execution</div></div></div>
-          <div class="tech-item"><div class="tech-icon">☕</div><div><div class="tech-name">Java / JUnit</div><div class="tech-role">Test tool integration — compiles and runs student Java programs in scenarios</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🔧</div><div><div class="tech-name">Shell / Git</div><div class="tech-role">Repo cloning, branch management, committing feedback to student branches</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🐍</div><div><div class="tech-name">Python 3</div><div class="tech-role">Core orchestration engine, CLI (feat3p), scenario pipeline</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🦊</div><div><div class="tech-name">GitLab CI/CD</div><div class="tech-role">Cross-project pipeline triggering between student and AutoTester repos</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🐋</div><div><div class="tech-name">Docker</div><div class="tech-role">Custom image with all dependencies for isolated, reproducible execution</div></div></div>
+          <div class="tech-item"><div class="tech-icon">☕</div><div><div class="tech-name">Java / JUnit</div><div class="tech-role">Student code compilation and unit test execution inside scenarios</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🔧</div><div><div class="tech-name">Shell / Git</div><div class="tech-role">Repo cloning, branch management, feedback commits</div></div></div>
           <div class="tech-item"><div class="tech-icon">✅</div><div><div class="tech-name">Checkstyle</div><div class="tech-role">Static code quality analysis integrated as a test tool inside scenarios</div></div></div>
         </div>
       </div>
     </div>
-  </div>
 
-    <!-- EPIDEMIC PROJECT CARD -->
+    <!-- Epidemic -->
     <div class="proj-card" style="margin-top:2rem;">
       <div class="proj-topbar">
         <div class="proj-topbar-left">
           <div class="proj-icon-wrap" style="background:linear-gradient(135deg,#064e3b,#065f46);">🦠</div>
           <div>
-            <div class="proj-eyebrow">Graph Theory Project · ENSEEIHT SN · Duo</div>
+            <div class="proj-eyebrow">Graph Theory · ENSEEIHT SN · Duo</div>
             <div class="proj-name">Epidemic <span>Spreading</span></div>
-            <div class="proj-tagline">Graph-based mathematical modeling of COVID-19 epidemic propagation through human contact networks.</div>
+            <div class="proj-tagline" data-i18n="proj.epidemic.tagline">Graph-based mathematical modeling of COVID-19 propagation through human contact networks using SIS, SIR, and SAIR models.</div>
           </div>
         </div>
         <div class="proj-topbar-right">
-          <div class="proj-stat"><div class="proj-stat-n">3</div><div class="proj-stat-l">Models</div></div>
-          <div class="proj-stat"><div class="proj-stat-n">1000+</div><div class="proj-stat-l">Node Network</div></div>
+          <div class="proj-stat"><div class="proj-stat-n">3</div><div class="proj-stat-l" data-i18n="proj.models">Models</div></div>
+          <div class="proj-stat"><div class="proj-stat-n">1000+</div><div class="proj-stat-l" data-i18n="proj.nodes">Nodes</div></div>
           <span class="proj-gh-btn" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#6ee7b7;cursor:default;">🎓 ENSEEIHT</span>
         </div>
       </div>
 
       <div class="proj-tabs">
-        <button class="proj-tab active" onclick="switchTab2(this,'ep-overview')">Overview</button>
-        <button class="proj-tab" onclick="switchTab2(this,'ep-models')">The 3 Models</button>
-        <button class="proj-tab" onclick="switchTab2(this,'ep-zero')">Patient Zero</button>
-        <button class="proj-tab" onclick="switchTab2(this,'ep-tech')">Tech Stack</button>
+        <button class="proj-tab active" onclick="switchTab(this,'ep-overview')" data-i18n="tab.overview">Overview</button>
+        <button class="proj-tab" onclick="switchTab(this,'ep-models')" data-i18n="tab.models">3 Models</button>
+        <button class="proj-tab" onclick="switchTab(this,'ep-zero')" data-i18n="tab.zero">Patient Zero</button>
+        <button class="proj-tab" onclick="switchTab(this,'ep-tech')" data-i18n="tab.tech">Tech Stack</button>
       </div>
 
-      <!-- OVERVIEW -->
       <div class="proj-panel active" id="tab-ep-overview">
         <div class="how-grid">
-          <div class="how-card">
-            <div class="how-num">01</div>
-            <div class="how-icon">🌐</div>
-            <div class="how-title">Contact Network</div>
-            <div class="how-desc">The population is modeled as a graph where each <strong>node = person</strong> and each <strong>edge = contact</strong>. Disease only travels through edges — capturing real-world social structures like families, workplaces, and neighborhoods.</div>
-          </div>
+          <div class="how-card"><div class="how-num">01</div><div class="how-icon">🌐</div><div class="how-title">Contact Network</div><div class="how-desc">Population modeled as a graph where each <strong>node = person</strong> and each <strong>edge = contact</strong>. Disease travels only through edges.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">02</div>
-            <div class="how-icon">🧮</div>
-            <div class="how-title">Mathematical Modeling</div>
-            <div class="how-desc">Three epidemic models (SIS, SIR, SAIR) simulate disease spread using infection rate <code>β</code>, curing rate <code>α</code>, and effective spreading rate <code>τ = α/β</code> across 3 real-world-inspired networks.</div>
-          </div>
+          <div class="how-card"><div class="how-num">02</div><div class="how-icon">🧮</div><div class="how-title">Mathematical Modeling</div><div class="how-desc">Three epidemic models (SIS, SIR, SAIR) with infection rate <code>β</code>, curing rate <code>α</code>, and spreading rate <code>τ = α/β</code>.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">03</div>
-            <div class="how-icon">📊</div>
-            <div class="how-title">Monte Carlo Simulation</div>
-            <div class="how-desc">Since each spread is stochastic, the models run thousands of simulations to produce reliable statistical predictions of infection percentages over time for each disease configuration.</div>
-          </div>
+          <div class="how-card"><div class="how-num">03</div><div class="how-icon">📊</div><div class="how-title">Monte Carlo</div><div class="how-desc">Thousands of stochastic simulations produce reliable statistical predictions of infection percentages over time.</div></div>
           <div class="how-arrow">→</div>
-          <div class="how-card">
-            <div class="how-num">04</div>
-            <div class="how-icon">🔍</div>
-            <div class="how-title">Source Detection</div>
-            <div class="how-desc">Given a snapshot of who is infected/recovered at a point in time, two graph algorithms (Jordan Center and Distance Centrality) attempt to trace back and identify the original Patient Zero.</div>
-          </div>
-        </div>
-
-        <!-- Network types -->
-        <div style="margin-top:2rem;">
-          <div style="font-size:.8rem;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;font-weight:700;">Contact Networks Used</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;">
-            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
-              <div class="how-icon">🥋</div>
-              <div class="how-title">Karate Club (karat7)</div>
-              <div class="how-desc">34 nodes — inspired by Zachary's famous karate club problem. Dense small social network.</div>
-            </div>
-            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
-              <div class="how-icon">🎓</div>
-              <div class="how-title">N7 Students (n7_2A)</div>
-              <div class="how-desc">220 nodes across 3 departments (SN, MF2E, 3EA). Dense intra-dept, sparse inter-dept connections.</div>
-            </div>
-            <div class="how-card" style="border-color:rgba(16,185,129,.3);">
-              <div class="how-icon">🏙️</div>
-              <div class="how-title">Toulouse Neighborhood</div>
-              <div class="how-desc">1000 nodes generated via Barabási-Albert model — mimics real-world scale-free social networks.</div>
-            </div>
-          </div>
+          <div class="how-card"><div class="how-num">04</div><div class="how-icon">🔍</div><div class="how-title">Source Detection</div><div class="how-desc">Jordan Center and Distance Centrality algorithms attempt to identify the original Patient Zero from a network snapshot.</div></div>
         </div>
       </div>
 
-      <!-- THE 3 MODELS -->
       <div class="proj-panel" id="tab-ep-models">
         <div style="display:flex;flex-direction:column;gap:1.5rem;">
-
-          <!-- SIS -->
           <div class="ep-model-card" style="border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.04);">
             <div class="ep-model-header">
               <div class="ep-model-badge" style="background:rgba(251,191,36,.2);color:#fbbf24;">SIS</div>
-              <div>
-                <div class="ep-model-title">Susceptible → Infected → Susceptible</div>
-                <div class="ep-model-sub">For diseases you can catch again — flu, cold</div>
-              </div>
-              <div class="ep-model-flow">
-                <span class="ep-node s-node">S</span>
-                <span class="ep-arrow">—β→</span>
-                <span class="ep-node i-node">I</span>
-                <span class="ep-arrow">—α→</span>
-                <span class="ep-node s-node">S</span>
-              </div>
+              <div><div class="ep-model-title">Susceptible → Infected → Susceptible</div><div class="ep-model-sub">Diseases you can catch again — flu, cold</div></div>
+              <div class="ep-model-flow"><span class="ep-node s-node">S</span><span class="ep-arrow">—β→</span><span class="ep-node i-node">I</span><span class="ep-arrow">—α→</span><span class="ep-node s-node">S</span></div>
             </div>
-            <p class="ep-model-desc">Each infected node spreads disease to susceptible neighbors with probability <code>β</code> per time step. Each infected node recovers with probability <code>α</code>. Cured individuals become susceptible again — the epidemic can plateau indefinitely if <code>τ = α/β</code> is high enough.</p>
-            <div class="ep-params">
-              <span class="ep-param"><code>β</code> infection rate</span>
-              <span class="ep-param"><code>α</code> curing rate</span>
-              <span class="ep-param"><code>τ = α/β</code> spreading rate</span>
-            </div>
+            <p class="ep-model-desc">Infected nodes spread to susceptible neighbors with probability <code>β</code>. Cured individuals become susceptible again — epidemic can plateau indefinitely if <code>τ = α/β</code> is high enough.</p>
           </div>
-
-          <!-- SIR -->
           <div class="ep-model-card" style="border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.04);">
             <div class="ep-model-header">
               <div class="ep-model-badge" style="background:rgba(139,92,246,.2);color:#c4b5fd;">SIR</div>
-              <div>
-                <div class="ep-model-title">Susceptible → Infected → Recovered</div>
-                <div class="ep-model-sub">For diseases that grant immunity — COVID-19</div>
-              </div>
-              <div class="ep-model-flow">
-                <span class="ep-node s-node">S</span>
-                <span class="ep-arrow">—β→</span>
-                <span class="ep-node i-node">I</span>
-                <span class="ep-arrow">—α→</span>
-                <span class="ep-node r-node">R</span>
-              </div>
+              <div><div class="ep-model-title">Susceptible → Infected → Recovered</div><div class="ep-model-sub">Diseases granting immunity — COVID-19</div></div>
+              <div class="ep-model-flow"><span class="ep-node s-node">S</span><span class="ep-arrow">—β→</span><span class="ep-node i-node">I</span><span class="ep-arrow">—α→</span><span class="ep-node r-node">R</span></div>
             </div>
-            <p class="ep-model-desc">Like SIS but recovered individuals gain permanent immunity — they cannot be reinfected. This causes the infected curve to always rise then fall back to zero, unlike SIS which can maintain a steady infected population. The epidemic always ends.</p>
-            <div class="ep-params">
-              <span class="ep-param"><code>β</code> infection rate</span>
-              <span class="ep-param"><code>α</code> curing rate</span>
-              <span class="ep-param">Recovered = immune</span>
-            </div>
+            <p class="ep-model-desc">Recovered individuals gain permanent immunity. The infected curve always rises then falls back to zero. The epidemic always ends.</p>
           </div>
-
-          <!-- SAIR -->
           <div class="ep-model-card" style="border-color:rgba(14,165,233,.3);background:rgba(14,165,233,.04);">
             <div class="ep-model-header">
               <div class="ep-model-badge" style="background:rgba(14,165,233,.2);color:var(--blue2);">SAIR</div>
-              <div>
-                <div class="ep-model-title">Susceptible → Alert → Infected → Recovered</div>
-                <div class="ep-model-sub">Most realistic — models human behavioral response</div>
-              </div>
-              <div class="ep-model-flow">
-                <span class="ep-node s-node">S</span>
-                <span class="ep-arrow">—κ→</span>
-                <span class="ep-node a-node">A</span>
-                <span class="ep-arrow">—β₁→</span>
-                <span class="ep-node i-node">I</span>
-                <span class="ep-arrow">—α→</span>
-                <span class="ep-node r-node">R</span>
-              </div>
+              <div><div class="ep-model-title">Susceptible → Alert → Infected → Recovered</div><div class="ep-model-sub">Most realistic — models human behavioral response</div></div>
+              <div class="ep-model-flow"><span class="ep-node s-node">S</span><span class="ep-arrow">—κ→</span><span class="ep-node a-node">A</span><span class="ep-arrow">—β₁→</span><span class="ep-node i-node">I</span><span class="ep-arrow">—α→</span><span class="ep-node r-node">R</span></div>
             </div>
-            <p class="ep-model-desc">Individuals observe their neighbors — if surrounded by infected people they enter an <strong>Alert</strong> state (wear masks, wash hands) with rate <code>κ</code>. Alerted individuals have a reduced infection rate <code>β₁ &lt; β₀</code>. This models real human behavioral adaptation and significantly slows epidemic peaks.</p>
-            <div class="ep-params">
-              <span class="ep-param"><code>β₀</code> normal infection rate</span>
-              <span class="ep-param"><code>β₁</code> alert infection rate</span>
-              <span class="ep-param"><code>κ</code> alerting rate</span>
-              <span class="ep-param"><code>α</code> curing rate</span>
-            </div>
+            <p class="ep-model-desc">Individuals surrounded by infected neighbors enter an <strong>Alert</strong> state (masks, hygiene) with rate <code>κ</code>, reducing infection rate to <code>β₁ &lt; β₀</code>. Models real human behavioral adaptation.</p>
           </div>
-
         </div>
       </div>
 
-      <!-- PATIENT ZERO -->
       <div class="proj-panel" id="tab-ep-zero">
-        <p style="color:var(--gray);font-size:.9rem;line-height:1.8;margin-bottom:2rem;">Given only a <strong style="color:var(--white)">snapshot</strong> of who is currently infected or recovered in the network — can we mathematically trace back to who started the epidemic? Two graph algorithms were implemented and compared:</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
-
-          <div class="role-card" style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.2);">
+        <p style="color:var(--gray);font-size:.9rem;line-height:1.8;margin-bottom:2rem;">Given a <strong style="color:var(--white)">snapshot</strong> of who is infected or recovered — can we mathematically trace back to the origin? Two algorithms compared:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div class="role-card student-card">
             <div class="role-icon">🎯</div>
             <div class="role-title">Jordan Center</div>
-            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;">Finds the node that <strong style="color:var(--white)">minimizes the maximum shortest path</strong> to any infected or recovered node. The logic: Patient Zero is likely at the geometric center of the infection cluster.</p>
-            <div style="background:var(--dark3);border-radius:8px;padding:.75rem;font-size:.78rem;color:var(--blue2);font-family:monospace;">argmin<sub>v∈C</sub> max<sub>u∈C</sub> d(u,v)</div>
-            <ul class="role-list" style="margin-top:1rem;">
-              <li>Uses <code>dijkstra_shortest_paths</code> from LightGraphs</li>
-              <li>Works on the subgraph of infected + recovered nodes</li>
-              <li>Simple and fast — purely spatial reasoning</li>
-            </ul>
+            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;">Finds the node minimizing the <strong style="color:var(--white)">maximum shortest path</strong> to any infected/recovered node. Uses <code>dijkstra_shortest_paths</code> — purely spatial reasoning.</p>
           </div>
-
-          <div class="role-card" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.2);">
+          <div class="role-card system-card">
             <div class="role-icon">📏</div>
             <div class="role-title">Distance Centrality</div>
-            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;">Finds the node that <strong style="color:var(--white)">minimizes a weighted sum of distances</strong> to all infected and recovered nodes. Recovered nodes are weighted more heavily (×α) since they likely got sick earlier — closer to the origin.</p>
-            <div style="background:var(--dark3);border-radius:8px;padding:.75rem;font-size:.78rem;color:var(--blue2);font-family:monospace;">argmin<sub>v</sub> Σ [𝟙<sub>I</sub>(n)·d(v,n) + α·𝟙<sub>R</sub>(n)·d(v,n)]</div>
-            <ul class="role-list" style="margin-top:1rem;">
-              <li>Weighs recovered nodes more — they were infected earlier</li>
-              <li>More nuanced than Jordan — accounts for epidemic timeline</li>
-              <li>Tested on karat7 and a 50×50 grid network</li>
-            </ul>
+            <p style="font-size:.82rem;color:var(--gray);line-height:1.6;">Minimizes a <strong style="color:var(--white)">weighted sum of distances</strong> to all infected/recovered nodes. Recovered nodes weighted more heavily (×α) since they were infected earlier.</p>
           </div>
         </div>
-
-        <div class="how-card" style="background:rgba(16,185,129,.05);border-color:rgba(16,185,129,.3);">
-          <div class="how-icon">💡</div>
-          <div class="how-title">Key Insight</div>
-          <div class="how-desc">The stochastic nature of infection makes this problem inherently hard — different initial conditions can lead to identical snapshots. These spatial heuristics approximate the source but cannot guarantee correctness. The denser and more symmetric the network, the harder Patient Zero identification becomes.</div>
-        </div>
       </div>
 
-      <!-- TECH STACK -->
       <div class="proj-panel" id="tab-ep-tech">
         <div class="tech-grid">
-          <div class="tech-item"><div class="tech-icon">⚡</div><div><div class="tech-name">Julia</div><div class="tech-role">Primary language — high-performance scientific computing ideal for large-scale graph simulations</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🕸️</div><div><div class="tech-name">LightGraphs.jl</div><div class="tech-role">Core graph library — graph creation, neighbor traversal, Dijkstra shortest paths for Patient Zero algorithms</div></div></div>
-          <div class="tech-item"><div class="tech-icon">📊</div><div><div class="tech-name">Plots.jl</div><div class="tech-role">Plotting infection curves, comparing SIS/SIR/SAIR models, visualizing epidemic evolution over time</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🎨</div><div><div class="tech-name">GraphPlot + Compose</div><div class="tech-role">Network visualization — rendering color-coded nodes (green=susceptible, orange=infected, purple=recovered)</div></div></div>
-          <div class="tech-item"><div class="tech-icon">🎲</div><div><div class="tech-name">Distributions.jl</div><div class="tech-role">Binomial distributions used to model probabilistic infection and recovery events per time step</div></div></div>
-          <div class="tech-item"><div class="tech-icon">📓</div><div><div class="tech-name">Jupyter Notebook</div><div class="tech-role">Interactive notebook combining Julia code, graph outputs, and written mathematical analysis</div></div></div>
+          <div class="tech-item"><div class="tech-icon">⚡</div><div><div class="tech-name">Julia</div><div class="tech-role">High-performance scientific computing for large-scale graph simulations</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🕸️</div><div><div class="tech-name">LightGraphs.jl</div><div class="tech-role">Graph creation, traversal, Dijkstra shortest paths for Patient Zero algorithms</div></div></div>
+          <div class="tech-item"><div class="tech-icon">📊</div><div><div class="tech-name">Plots.jl</div><div class="tech-role">Visualizing infection curves and comparing SIS/SIR/SAIR model behavior</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🎲</div><div><div class="tech-name">Distributions.jl</div><div class="tech-role">Binomial distributions for probabilistic infection and recovery events</div></div></div>
+          <div class="tech-item"><div class="tech-icon">🎨</div><div><div class="tech-name">GraphPlot + Compose</div><div class="tech-role">Color-coded network visualization (green=susceptible, orange=infected, purple=recovered)</div></div></div>
+          <div class="tech-item"><div class="tech-icon">📓</div><div><div class="tech-name">Jupyter Notebook</div><div class="tech-role">Interactive analysis combining Julia code, graph outputs, and mathematical explanation</div></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -840,28 +553,25 @@
 <!-- LEARNING -->
 <section id="learning">
   <div class="container">
-    <p class="section-label">What's Next</p>
-    <h2 class="section-title">Currently <span style="color:var(--blue)">Learning</span></h2>
-    <p class="section-sub">Expanding my skillset beyond enterprise architecture — exploring automation, workflow design, and the future of AI-powered business solutions.</p>
+    <p class="section-label" data-i18n="learn.label">What's Next</p>
+    <h2 class="section-title" data-i18n="learn.title">Currently <em>Learning</em></h2>
+    <p class="section-sub" data-i18n="learn.sub">Expanding beyond enterprise architecture — exploring automation, workflow design, and AI-powered business solutions.</p>
 
-    <!-- Banner -->
     <div class="learn-banner">
       <div class="learn-banner-left">
         <div class="learn-banner-icon">🚀</div>
         <div>
-          <div class="learn-banner-title">Building Toward Automation Expertise</div>
-          <div class="learn-banner-sub">Combining low-code tools and custom workflow engines to prepare for the next generation of enterprise solutions at Bizzdesign.</div>
+          <div class="learn-banner-title" data-i18n="learn.banner.title">Building Toward Automation Expertise</div>
+          <div class="learn-banner-sub" data-i18n="learn.banner.sub">Combining low-code tools and custom workflow engines for next-gen enterprise solutions at Bizzdesign.</div>
         </div>
       </div>
       <div class="learn-banner-right">
-        <div class="learn-stat"><div class="learn-stat-n">2</div><div class="learn-stat-l">Tools in Progress</div></div>
-        <div class="learn-stat"><div class="learn-stat-n">1</div><div class="learn-stat-l">Live Workflow</div></div>
+        <div class="learn-stat"><div class="learn-stat-n">2</div><div class="learn-stat-l" data-i18n="learn.stat1">Tools in Progress</div></div>
+        <div class="learn-stat"><div class="learn-stat-n">1</div><div class="learn-stat-l" data-i18n="learn.stat2">Live Workflow</div></div>
       </div>
     </div>
 
     <div class="learn-grid">
-
-      <!-- Power Automate -->
       <div class="learn-card">
         <div class="learn-card-top">
           <div class="learn-card-icon" style="background:linear-gradient(135deg,#1e40af,#1d4ed8);">⚡</div>
@@ -871,50 +581,24 @@
           </div>
           <span class="learn-badge active">🟢 In Training</span>
         </div>
-
-        <p class="learn-desc">Learning to design and deploy cloud-based automated workflows using Power Automate's low-code environment. Focus on connecting Microsoft 365 services, triggers, conditions, and scheduled flows for real business use cases.</p>
-
-        <!-- Live workflow highlight -->
+        <p class="learn-desc" data-i18n="learn.automate.desc">Designing and deploying cloud-based automated workflows using Power Automate. Focus on Microsoft 365 integration, scheduled flows, and real business use cases at Bizzdesign.</p>
         <div class="learn-workflow">
-          <div class="learn-workflow-header">
-            <span class="live-dot"></span>
-            <span class="live-label">Live Workflow · Production</span>
-          </div>
-          <div class="learn-workflow-title">📅 Weekly Timecard Report</div>
-          <div class="learn-workflow-desc">A scheduled cloud flow that automatically compiles and sends a weekly timecard email to my manager every Monday morning — summarizing the time logged across all active Bizzdesign client projects.</div>
+          <div class="learn-workflow-header"><span class="live-dot"></span><span class="live-label" data-i18n="learn.live">Live Workflow · Production</span></div>
+          <div class="learn-workflow-title">📅 <span data-i18n="learn.wf.title">Weekly Timecard Report</span></div>
+          <div class="learn-workflow-desc" data-i18n="learn.wf.desc">A scheduled cloud flow automatically compiling and sending a weekly timecard email to my manager every Monday morning.</div>
           <div class="learn-wf-steps">
-            <div class="learn-wf-step">
-              <div class="learn-wf-step-icon">⏰</div>
-              <div class="learn-wf-step-label">Weekly Trigger<br/><span>Every Monday 8AM</span></div>
-            </div>
+            <div class="learn-wf-step"><div class="learn-wf-step-icon">⏰</div><div class="learn-wf-step-label" data-i18n="learn.wf.s1">Weekly Trigger<br/><span>Mon 8AM</span></div></div>
             <div class="learn-wf-arrow">→</div>
-            <div class="learn-wf-step">
-              <div class="learn-wf-step-icon">📊</div>
-              <div class="learn-wf-step-label">Collect Timecards<br/><span>All active projects</span></div>
-            </div>
+            <div class="learn-wf-step"><div class="learn-wf-step-icon">📊</div><div class="learn-wf-step-label" data-i18n="learn.wf.s2">Collect Timecards<br/><span>All projects</span></div></div>
             <div class="learn-wf-arrow">→</div>
-            <div class="learn-wf-step">
-              <div class="learn-wf-step-icon">📝</div>
-              <div class="learn-wf-step-label">Format Report<br/><span>HTML email body</span></div>
-            </div>
+            <div class="learn-wf-step"><div class="learn-wf-step-icon">📝</div><div class="learn-wf-step-label" data-i18n="learn.wf.s3">Format Report<br/><span>HTML email</span></div></div>
             <div class="learn-wf-arrow">→</div>
-            <div class="learn-wf-step">
-              <div class="learn-wf-step-icon">✉️</div>
-              <div class="learn-wf-step-label">Send to Manager<br/><span>Outlook / Teams</span></div>
-            </div>
+            <div class="learn-wf-step"><div class="learn-wf-step-icon">✉️</div><div class="learn-wf-step-label" data-i18n="learn.wf.s4">Send to Manager<br/><span>Outlook</span></div></div>
           </div>
         </div>
-
-        <div class="learn-tags">
-          <span class="tag">Cloud Flows</span>
-          <span class="tag">Microsoft 365</span>
-          <span class="tag">Outlook</span>
-          <span class="tag">Scheduled Triggers</span>
-          <span class="tag">Low-Code</span>
-        </div>
+        <div class="learn-tags"><span class="tag">Cloud Flows</span><span class="tag">Microsoft 365</span><span class="tag">Outlook</span><span class="tag">Low-Code</span></div>
       </div>
 
-      <!-- n8n -->
       <div class="learn-card">
         <div class="learn-card-top">
           <div class="learn-card-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);">🔗</div>
@@ -924,51 +608,13 @@
           </div>
           <span class="learn-badge learning">📘 Learning</span>
         </div>
-
-        <p class="learn-desc">Exploring n8n — an open-source, self-hostable workflow automation platform — to build custom, code-capable automation pipelines. Unlike Power Automate, n8n allows full flexibility with custom nodes, API integrations, and conditional logic.</p>
-
-        <!-- Goal highlight -->
+        <p class="learn-desc" data-i18n="learn.n8n.desc">Exploring n8n — open-source, self-hostable workflow automation — to build flexible pipelines with custom nodes, API integrations, and conditional logic beyond what low-code tools offer.</p>
         <div class="learn-goal">
-          <div class="learn-goal-header">
-            <span>🎯</span>
-            <span class="learn-goal-title">Strategic Goal — Bizzdesign Unify</span>
-          </div>
-          <p class="learn-goal-desc">Bizzdesign is rolling out <strong style="color:var(--white)">Unify</strong> — a next-generation enterprise solution for clients. Learning n8n to design and deliver <strong style="color:var(--white)">custom automation workflows</strong> that integrate with Unify, enabling clients to automate their business processes, data syncs, and reporting pipelines without heavy development effort.</p>
-          <div class="learn-goal-examples">
-            <div class="learn-goal-ex">
-              <div class="learn-goal-ex-icon">🔄</div>
-              <div>
-                <div class="learn-goal-ex-title">Process Automation</div>
-                <div class="learn-goal-ex-sub">Trigger workflows from Unify events — compliance checks, risk alerts, audit schedules</div>
-              </div>
-            </div>
-            <div class="learn-goal-ex">
-              <div class="learn-goal-ex-icon">🔌</div>
-              <div>
-                <div class="learn-goal-ex-title">API Integration</div>
-                <div class="learn-goal-ex-sub">Connect Unify with external systems — ERP, SharePoint, reporting tools, databases</div>
-              </div>
-            </div>
-            <div class="learn-goal-ex">
-              <div class="learn-goal-ex-icon">📤</div>
-              <div>
-                <div class="learn-goal-ex-title">Client Deliverables</div>
-                <div class="learn-goal-ex-sub">Deliver ready-made automation flows as part of Bizzdesign solution implementations</div>
-              </div>
-            </div>
-          </div>
+          <div class="learn-goal-header"><span>🎯</span><span class="learn-goal-title" data-i18n="learn.goal.title">Strategic Goal — Bizzdesign Unify</span></div>
+          <p class="learn-goal-desc" data-i18n="learn.goal.desc">Learning n8n to design custom automation workflows integrating with <strong style="color:var(--white)">Bizzdesign Unify</strong>, enabling clients to automate business processes, data syncs, and reporting pipelines.</p>
         </div>
-
-        <div class="learn-tags">
-          <span class="tag">n8n</span>
-          <span class="tag">REST APIs</span>
-          <span class="tag">Custom Nodes</span>
-          <span class="tag">Webhooks</span>
-          <span class="tag">Self-hosted</span>
-          <span class="tag">Bizzdesign Unify</span>
-        </div>
+        <div class="learn-tags"><span class="tag">n8n</span><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">Self-hosted</span><span class="tag">Bizzdesign Unify</span></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -976,9 +622,9 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <p class="section-label">Expertise</p>
-    <h2 class="section-title">Skills & Technologies</h2>
-    <p class="section-sub">A diverse toolkit spanning enterprise architecture platforms, backend & frontend development, and cloud infrastructure.</p>
+    <p class="section-label" data-i18n="skills.label">Expertise</p>
+    <h2 class="section-title" data-i18n="skills.title">Skills & Technologies</h2>
+    <p class="section-sub" data-i18n="skills.sub">A diverse toolkit spanning enterprise architecture platforms, backend & frontend development, and cloud infrastructure.</p>
     <div class="skills-grid" id="skillsGrid"></div>
   </div>
 </section>
@@ -986,30 +632,33 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
-    <p class="section-label">Academic Background</p>
-    <h2 class="section-title">Education</h2>
-    <p class="section-sub">Rigorous engineering formation across some of France and Morocco's top institutions.</p>
+    <p class="section-label" data-i18n="edu.label">Academic Background</p>
+    <h2 class="section-title" data-i18n="edu.title">Education</h2>
+    <p class="section-sub" data-i18n="edu.sub">Rigorous engineering formation across France and Morocco's top institutions.</p>
     <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-degree">Engineer's Degree — Computer Science & Telecommunications</div>
+      <div class="edu-card edu-main">
+        <div class="edu-year">2020–2023</div>
+        <div class="edu-icon-lg">🎓</div>
+        <div class="edu-degree" data-i18n="edu.enseeiht.degree">Engineer's Degree — Computer Science & Telecommunications</div>
         <div class="edu-school">INP Toulouse – ENSEEIHT</div>
-        <div class="edu-period">2020 – 2023</div>
         <div class="edu-location">📍 Toulouse, France</div>
+        <div class="edu-tags"><span class="tag">Top Engineering School</span><span class="tag">Algorithms</span><span class="tag">Networks</span><span class="tag">Systems</span></div>
       </div>
       <div class="edu-card">
-        <div class="edu-icon">📐</div>
-        <div class="edu-degree">Preparatory Classes for Engineering Schools (MPSI)</div>
-        <div class="edu-school">Mohamed 6 High School of Excellence</div>
-        <div class="edu-period">2018 – 2020</div>
+        <div class="edu-year">2018–2020</div>
+        <div class="edu-icon-lg">📐</div>
+        <div class="edu-degree" data-i18n="edu.cpge.degree">Preparatory Classes (CPSI/MPSI)</div>
+        <div class="edu-school">Mohamed VI School of Excellence</div>
         <div class="edu-location">📍 Benguerir, Morocco</div>
+        <div class="edu-tags"><span class="tag">CPGE</span><span class="tag">Math</span><span class="tag">Physics</span></div>
       </div>
       <div class="edu-card">
-        <div class="edu-icon">🏅</div>
-        <div class="edu-degree">High School Diploma — Mathematics & Sciences (Highest Honors)</div>
+        <div class="edu-year">2016–2018</div>
+        <div class="edu-icon-lg">🏅</div>
+        <div class="edu-degree" data-i18n="edu.bac.degree">Baccalaureate — Math & Sciences (Highest Honors)</div>
         <div class="edu-school">Mohamed Derfoufi High School</div>
-        <div class="edu-period">2016 – 2018</div>
         <div class="edu-location">📍 Agadir, Morocco</div>
+        <div class="edu-tags"><span class="tag">Mention Très Bien</span></div>
       </div>
     </div>
   </div>
@@ -1018,61 +667,53 @@
 <!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="container">
-    <p class="section-label">Credentials</p>
-    <h2 class="section-title">Licenses & Certifications</h2>
-    <p class="section-sub">Industry-recognized certifications across data analysis, enterprise architecture, and governance platforms.</p>
+    <p class="section-label" data-i18n="cert.label">Credentials</p>
+    <h2 class="section-title" data-i18n="cert.title">Certifications</h2>
+    <p class="section-sub" data-i18n="cert.sub">Industry-recognized certifications across data science, enterprise architecture, and governance platforms.</p>
 
-    <div class="cert-featured">
-      <div><div class="cert-badge-wrap">🏅</div></div>
-      <div>
+    <div class="cert-grid">
+      <div class="cert-card cert-featured">
+        <div class="cert-badge-wrap">🏅</div>
         <div class="cert-issuer"><span class="cert-dot"></span>IBM</div>
         <h3 class="cert-title">Data Analysis with Python</h3>
-        <p class="cert-desc">Demonstrates proficiency in data analysis using Python libraries including Pandas, Numpy, and Matplotlib. Covers data wrangling, exploratory analysis, pipeline development, and predictive modeling foundations.</p>
-        <div class="cert-meta">
-          <span class="cert-pill verified">✓ Verified Badge</span>
-          <span class="cert-pill">Credly</span><span class="cert-pill">Data Science</span>
-        </div>
-        <a href="https://www.credly.com/badges/61081e03-f089-4cb9-9ea2-a86a72df76b2/linked_in_profile" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem">View Credential →</a>
+        <p class="cert-desc" data-i18n="cert.ibm.desc">Proficiency in Pandas, Numpy, Matplotlib — data wrangling, exploratory analysis, and predictive modeling.</p>
+        <div class="cert-meta"><span class="cert-pill verified">✓ Verified Badge</span><span class="cert-pill">Credly</span><span class="cert-pill">Data Science</span></div>
+        <a href="https://www.credly.com/badges/61081e03-f089-4cb9-9ea2-a86a72df76b2/linked_in_profile" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem" data-i18n="cert.view">View Credential →</a>
       </div>
-    </div>
 
-    <div class="cert-featured" style="margin-bottom:3rem;">
-      <div><div class="cert-badge-wrap" style="background:linear-gradient(135deg,#1e3a5f,#0c4a6e);">🎓</div></div>
-      <div>
+      <div class="cert-card cert-featured">
+        <div class="cert-badge-wrap" style="background:linear-gradient(135deg,#1e3a5f,#0c4a6e);">🎓</div>
         <div class="cert-issuer"><span class="cert-dot" style="background:#7c3aed"></span><span style="color:#a78bfa">Cambridge University Press & Assessment</span></div>
         <h3 class="cert-title">Linguaskill — B2 Upper Intermediate</h3>
-        <p class="cert-desc">Achieved a score of <strong style="color:var(--blue)">173</strong> on the Cambridge Linguaskill test, certifying upper-intermediate English proficiency (B2 level on the CEFR scale).</p>
-        <div class="cert-meta">
-          <span class="cert-pill verified">✓ B2 Certified</span>
-          <span class="cert-pill">Score: 173</span><span class="cert-pill">CEFR B2</span><span class="cert-pill">English</span>
-        </div>
-        <a href="https://drive.google.com/file/d/1ZUq7N9LGHz-qESHbvP9UoaN17Z_GySP0/view" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem">View Certificate →</a>
+        <p class="cert-desc" data-i18n="cert.cambridge.desc">Score of <strong style="color:var(--blue)">173</strong> on Cambridge Linguaskill — B2 level on the CEFR scale.</p>
+        <div class="cert-meta"><span class="cert-pill verified">✓ B2 Certified</span><span class="cert-pill">Score: 173</span><span class="cert-pill">CEFR B2</span></div>
+        <a href="https://drive.google.com/file/d/1ZUq7N9LGHz-qESHbvP9UoaN17Z_GySP0/view" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;font-size:.85rem;padding:.6rem 1.5rem" data-i18n="cert.view">View Certificate →</a>
       </div>
     </div>
 
     <div class="hopex-header">
       <div class="hopex-logo">HOPEX <span>Aquila</span></div>
-      <p style="color:var(--gray);font-size:.875rem;">Certified by MEGA International · Bizzdesign</p>
+      <p style="color:var(--gray);font-size:.875rem;" data-i18n="cert.hopex.sub">Certified by MEGA International · Bizzdesign</p>
     </div>
     <div class="hopex-grid">
       <div class="hopex-card certified">
-        <div class="hopex-card-top"><div class="hopex-icon">🔄</div><span class="status-badge done">✓ Certified</span></div>
-        <div class="hopex-card-body"><div class="hopex-module">Business Process Analysis</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Modeling and analyzing end-to-end business processes in compliance with BPMN standards using the HOPEX platform.</p></div>
+        <div class="hopex-card-top"><div class="hopex-icon">🔄</div><span class="status-badge done" data-i18n="cert.certified">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module" data-i18n="cert.bpa">Business Process Analysis</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc" data-i18n="cert.bpa.desc">Modeling and analyzing end-to-end business processes in compliance with BPMN standards.</p></div>
         <div class="hopex-card-foot"><span class="tag">BPMN</span><span class="tag">BPA</span><span class="tag">Process Modeling</span></div>
       </div>
       <div class="hopex-card certified">
-        <div class="hopex-card-top"><div class="hopex-icon">🛡️</div><span class="status-badge done">✓ Certified</span></div>
-        <div class="hopex-card-body"><div class="hopex-module">Governance, Risk & Compliance</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Managing risk assessments, compliance frameworks, and internal controls using HOPEX GRC suite.</p></div>
+        <div class="hopex-card-top"><div class="hopex-icon">🛡️</div><span class="status-badge done" data-i18n="cert.certified">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module" data-i18n="cert.grc">Governance, Risk & Compliance</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc" data-i18n="cert.grc.desc">Managing risk assessments, compliance frameworks, and internal controls using HOPEX GRC.</p></div>
         <div class="hopex-card-foot"><span class="tag">GRC</span><span class="tag">Risk Mgmt</span><span class="tag">ISO</span></div>
       </div>
       <div class="hopex-card certified">
-        <div class="hopex-card-top"><div class="hopex-icon">🔍</div><span class="status-badge done">✓ Certified</span></div>
-        <div class="hopex-card-body"><div class="hopex-module">Internal Audit</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Planning and executing audit missions, defining scope, recording observations using HOPEX Internal Audit.</p></div>
+        <div class="hopex-card-top"><div class="hopex-icon">🔍</div><span class="status-badge done" data-i18n="cert.certified">✓ Certified</span></div>
+        <div class="hopex-card-body"><div class="hopex-module" data-i18n="cert.audit">Internal Audit</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc" data-i18n="cert.audit.desc">Planning and executing audit missions, defining scope, and recording observations.</p></div>
         <div class="hopex-card-foot"><span class="tag">Audit</span><span class="tag">Internal Control</span><span class="tag">Compliance</span></div>
       </div>
       <div class="hopex-card in-progress">
-        <div class="hopex-card-top"><div class="hopex-icon">🏗️</div><span class="status-badge wip">⏳ In Progress</span></div>
-        <div class="hopex-card-body"><div class="hopex-module">IT Architecture</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc">Currently pursuing certification covering application landscape, infrastructure modeling, and technology roadmaps.</p></div>
+        <div class="hopex-card-top"><div class="hopex-icon">🏗️</div><span class="status-badge wip" data-i18n="cert.inprogress">⏳ In Progress</span></div>
+        <div class="hopex-card-body"><div class="hopex-module" data-i18n="cert.it">IT Architecture</div><div class="hopex-level">Practitioner Level</div><p class="hopex-desc" data-i18n="cert.it.desc">Application landscape, infrastructure modeling, and technology roadmaps.</p></div>
         <div class="hopex-card-foot"><span class="tag">IT Architecture</span><span class="tag">EA</span><span class="tag">TOGAF</span></div>
         <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
       </div>
@@ -1083,23 +724,22 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">Let's Work Together</h2>
+    <p class="section-label" data-i18n="contact.label">Get In Touch</p>
+    <h2 class="section-title" data-i18n="contact.title">Let's Work Together</h2>
     <div class="contact-box">
       <div class="contact-info">
-        <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
+        <p data-i18n="contact.desc">Open to opportunities in Solution Engineering, Enterprise Architecture, and software development. Let's connect.</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
-        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
-        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
+        <a href="https://github.com/ikichmohamed" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
-        <div class="form-group"><label>NAME</label><input id="f-name" placeholder="Your name"/></div>
-        <div class="form-group"><label>EMAIL</label><input id="f-email" type="email" placeholder="your@email.com"/></div>
-        <div class="form-group"><label>MESSAGE</label><textarea id="f-msg" placeholder="Tell me about your project or opportunity..."></textarea></div>
-        <button class="btn btn-primary" style="width:100%" onclick="sendEmail()">Send Message →</button>
+        <div class="form-group"><label data-i18n="form.name">NAME</label><input id="f-name" data-i18n-placeholder="form.name.ph" placeholder="Your name"/></div>
+        <div class="form-group"><label data-i18n="form.email">EMAIL</label><input id="f-email" type="email" placeholder="your@email.com"/></div>
+        <div class="form-group"><label data-i18n="form.msg">MESSAGE</label><textarea id="f-msg" data-i18n-placeholder="form.msg.ph" placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%" onclick="sendEmail()"><span data-i18n="form.send">Send Message →</span></button>
       </div>
     </div>
   </div>
@@ -1109,121 +749,6 @@
   <p>© 2026 Mohamed Ikich · Solution Engineer · Casablanca, Morocco</p>
 </footer>
 
-<script>
-// Visitor counter with 1-hour cooldown
-(async () => {
-  const COOLDOWN = 60 * 60 * 1000; // 1 hour in ms
-  const LS_KEY = 'mi_last_visit';
-  const statusEl = document.getElementById('vcStatusText');
-  const numEl = document.getElementById('vcNum');
-  const progressEl = document.getElementById('vcProgress');
-
-  function animateCount(target) {
-    let current = 0;
-    const step = Math.ceil(target / 60);
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      numEl.textContent = current.toLocaleString();
-      if (current >= target) clearInterval(timer);
-    }, 30);
-    // Animate ring — cap visual at 10000 visits for full circle
-    const pct = Math.min(target / 10000, 1);
-    const circumference = 163;
-    progressEl.style.strokeDashoffset = circumference - (pct * circumference);
-  }
-
-  try {
-    const now = Date.now();
-    const last = parseInt(localStorage.getItem(LS_KEY) || '0');
-    const shouldCount = (now - last) > COOLDOWN;
-
-    // Fetch count — hit endpoint only if cooldown passed, read-only otherwise
-    const url = shouldCount
-      ? 'https://hits.sh/mohamed-ikich.netlify.app'
-      : 'https://hits.sh/mohamed-ikich.netlify.app?nocache=' + now;
-
-    // Use image trick: load hits.sh to trigger increment only when needed
-    if (shouldCount) {
-      localStorage.setItem(LS_KEY, String(now));
-      const img = new Image();
-      img.src = 'https://hits.sh/mohamed-ikich.netlify.app.svg?color=0ea5e9';
-    }
-
-    // Get count from hits.sh SVG text via fetch
-    const res = await fetch('https://hits.sh/mohamed-ikich.netlify.app.svg?color=0ea5e9&label=visits');
-    const svg = await res.text();
-    const match = svg.match(/>(\d+)</);
-    if (match) {
-      const count = parseInt(match[1]);
-      animateCount(count);
-      const mins = Math.round((COOLDOWN - (now - last)) / 60000);
-      statusEl.textContent = shouldCount
-        ? 'Counted your visit'
-        : `Next count in ~${Math.max(mins,1)}min`;
-    } else {
-      numEl.textContent = '—';
-      statusEl.textContent = 'Live counter';
-    }
-  } catch(e) {
-    document.getElementById('vcWrap').style.display = 'none';
-  }
-})();
-
-// Tab switching
-function switchTab(btn, id){
-  document.querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-}
-
-function switchTab2(btn, id){
-  btn.closest('.proj-card').querySelectorAll('.proj-tab').forEach(t=>t.classList.remove('active'));
-  btn.closest('.proj-card').querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-}
-
-// Skills
-const skills=[
-  {icon:'🏗️',name:'HOPEX Platform',cat:'Enterprise Architecture',pct:92},
-  {icon:'☕',name:'Java / C# / .NET',cat:'Backend',pct:85},
-  {icon:'🐍',name:'Python / Django',cat:'Backend',pct:88},
-  {icon:'🌐',name:'HTML / CSS / jQuery / JS',cat:'Frontend',pct:82},
-  {icon:'🐋',name:'Docker',cat:'DevOps',pct:80},
-  {icon:'☁️',name:'Amazon Web Services',cat:'Cloud',pct:75},
-  {icon:'🗄️',name:'SQL / PostgreSQL',cat:'Database',pct:83},
-  {icon:'📊',name:'VBScript / BPMN',cat:'Process & Reporting',pct:88},
-  {icon:'🔧',name:'Git / GitLab / Maven',cat:'Dev Tools',pct:87},
-];
-const sg=document.getElementById('skillsGrid');
-skills.forEach(s=>{
-  sg.innerHTML+=`<div class="skill-card">
-    <div class="skill-header">
-      <div class="skill-icon">${s.icon}</div>
-      <div><div class="skill-name">${s.name}</div><div class="skill-cat">${s.cat}</div></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray);margin-bottom:.5rem">
-      <span>Proficiency</span><span style="color:var(--blue)">${s.pct}%</span>
-    </div>
-    <div class="bar-wrap"><div class="bar" data-w="${s.pct}%"></div></div>
-  </div>`;
-});
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);obs.disconnect();}});
-},{threshold:.3});
-obs.observe(document.getElementById('skills'));
-
-// Contact form
-function sendEmail(){
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const msg=document.getElementById('f-msg').value.trim();
-  if(!name||!email||!msg){alert('Please fill in all fields.');return;}
-  const subject=encodeURIComponent(`Portfolio Contact from ${name}`);
-  const body=encodeURIComponent(`Hi Mohamed,\n\nMy name is ${name} and I found your portfolio online.\n\n${msg}\n\nBest regards,\n${name}\n${email}`);
-  window.location.href=`mailto:ikich.mohamed.mpsi@gmail.com?subject=${subject}&body=${body}`;
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
