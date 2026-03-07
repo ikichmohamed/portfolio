@@ -14,8 +14,22 @@
   html{scroll-behavior:smooth;}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
 
-  .visitor-counter{display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.25);color:var(--blue2);font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:99px;margin-top:1.5rem;}
-  .visitor-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);animation:pulse 2s infinite;}
+  /* VISITOR COUNTER */
+  .vc-wrap{display:inline-flex;margin-top:2rem;}
+  .vc-inner{display:flex;align-items:center;gap:1rem;background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.2);border-radius:16px;padding:.75rem 1.25rem;backdrop-filter:blur(8px);}
+  .vc-ring{position:relative;width:52px;height:52px;flex-shrink:0;}
+  .vc-svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);}
+  .vc-track{fill:none;stroke:rgba(14,165,233,.15);stroke-width:3;}
+  .vc-progress{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-dasharray:163;stroke-dashoffset:163;transition:stroke-dashoffset 1.5s ease;}
+  .vc-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+  .vc-info{display:flex;flex-direction:column;gap:.2rem;}
+  .vc-label{font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+  .vc-count{display:flex;align-items:baseline;gap:.3rem;}
+  .vc-num{font-size:1.4rem;font-weight:800;color:var(--white);font-variant-numeric:tabular-nums;}
+  .vc-unit{font-size:.72rem;color:var(--blue2);font-weight:600;}
+  .vc-status{display:flex;align-items:center;gap:.4rem;}
+  .vc-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px rgba(74,222,128,.2);animation:pulse 2s infinite;flex-shrink:0;}
+  .vc-status span:last-child{font-size:.68rem;color:var(--gray);}
 
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
@@ -330,9 +344,28 @@
     <div class="hero-badge">✦ Open to new opportunities · Casablanca, Morocco</div>
     <h1>Hi, I'm <span>Mohamed Ikich</span></h1>
     <p class="hero-sub">Solution Engineer with a passion for Enterprise Architecture, Risk Management & Compliance — bridging complex business needs with tailored technical solutions at scale.</p>
-    <div class="visitor-counter" id="visitorBadge">
-      <span class="visitor-dot"></span>
-      <span id="visitorCount">...</span> visitors
+    <!-- Visitor Counter -->
+    <div class="vc-wrap" id="vcWrap">
+      <div class="vc-inner">
+        <div class="vc-ring">
+          <svg viewBox="0 0 60 60" class="vc-svg">
+            <circle cx="30" cy="30" r="26" class="vc-track"/>
+            <circle cx="30" cy="30" r="26" class="vc-progress" id="vcProgress"/>
+          </svg>
+          <div class="vc-icon">👁️</div>
+        </div>
+        <div class="vc-info">
+          <div class="vc-label">Portfolio Views</div>
+          <div class="vc-count" id="visitorCount">
+            <span class="vc-num" id="vcNum">—</span>
+            <span class="vc-unit">visits</span>
+          </div>
+          <div class="vc-status" id="vcStatus">
+            <span class="vc-dot"></span>
+            <span id="vcStatusText">Loading...</span>
+          </div>
+        </div>
+      </div>
     </div>
     <a href="#experience" class="btn btn-primary" style="margin-top:1.5rem;">View My Experience</a>
     <a href="#contact" class="btn btn-outline" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</a>
@@ -1056,9 +1089,10 @@
       <div class="contact-info">
         <p>I'm open to new opportunities in Solution Engineering, Enterprise Architecture, and software development. Feel free to reach out — I'd love to connect!</p>
         <a href="mailto:ikich.mohamed.mpsi@gmail.com" class="contact-link"><span>✉️</span> ikich.mohamed.mpsi@gmail.com</a>
+        <a href="mailto:mikich@mega.com" class="contact-link"><span>💼</span> mikich@mega.com</a>
         <a href="tel:+212604766142" class="contact-link"><span>📞</span> +212 604 766 142</a>
         <a href="https://www.linkedin.com/in/mohamed-ikich-2b285b1b4/" target="_blank" class="contact-link"><span>🔗</span> linkedin.com/in/mohamed-ikich</a>
-        <a href="https://github.com/ikichmohamed" target="_blank" class="contact-link"><span>🐙</span> github.com/ikichmohamed</a>
+        <a href="https://github.com/momoikich" target="_blank" class="contact-link"><span>🐙</span> github.com/momoikich</a>
         <a href="#" class="contact-link"><span>📍</span> Casablanca, Morocco</a>
       </div>
       <div>
@@ -1076,19 +1110,62 @@
 </footer>
 
 <script>
-// Visitor counter
+// Visitor counter with 1-hour cooldown
 (async () => {
+  const COOLDOWN = 60 * 60 * 1000; // 1 hour in ms
+  const LS_KEY = 'mi_last_visit';
+  const statusEl = document.getElementById('vcStatusText');
+  const numEl = document.getElementById('vcNum');
+  const progressEl = document.getElementById('vcProgress');
+
+  function animateCount(target) {
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      numEl.textContent = current.toLocaleString();
+      if (current >= target) clearInterval(timer);
+    }, 30);
+    // Animate ring — cap visual at 10000 visits for full circle
+    const pct = Math.min(target / 10000, 1);
+    const circumference = 163;
+    progressEl.style.strokeDashoffset = circumference - (pct * circumference);
+  }
+
   try {
-    const KEY = 'portfolio-visitors';
-    let count = 1;
-    try {
-      const res = await window.storage.get(KEY, true);
-      count = parseInt(res.value || '0') + 1;
-    } catch(e) { count = 1; }
-    await window.storage.set(KEY, String(count), true);
-    document.getElementById('visitorCount').textContent = count.toLocaleString();
+    const now = Date.now();
+    const last = parseInt(localStorage.getItem(LS_KEY) || '0');
+    const shouldCount = (now - last) > COOLDOWN;
+
+    // Fetch count — hit endpoint only if cooldown passed, read-only otherwise
+    const url = shouldCount
+      ? 'https://hits.sh/mohamed-ikich.netlify.app'
+      : 'https://hits.sh/mohamed-ikich.netlify.app?nocache=' + now;
+
+    // Use image trick: load hits.sh to trigger increment only when needed
+    if (shouldCount) {
+      localStorage.setItem(LS_KEY, String(now));
+      const img = new Image();
+      img.src = 'https://hits.sh/mohamed-ikich.netlify.app.svg?color=0ea5e9';
+    }
+
+    // Get count from hits.sh SVG text via fetch
+    const res = await fetch('https://hits.sh/mohamed-ikich.netlify.app.svg?color=0ea5e9&label=visits');
+    const svg = await res.text();
+    const match = svg.match(/>(\d+)</);
+    if (match) {
+      const count = parseInt(match[1]);
+      animateCount(count);
+      const mins = Math.round((COOLDOWN - (now - last)) / 60000);
+      statusEl.textContent = shouldCount
+        ? 'Counted your visit'
+        : `Next count in ~${Math.max(mins,1)}min`;
+    } else {
+      numEl.textContent = '—';
+      statusEl.textContent = 'Live counter';
+    }
   } catch(e) {
-    document.getElementById('visitorBadge').style.display = 'none';
+    document.getElementById('vcWrap').style.display = 'none';
   }
 })();
 
