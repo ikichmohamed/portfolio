@@ -407,10 +407,6 @@ document.getElementById('langToggle').addEventListener('click', toggleLang);
    We never fetch() the SVG directly.
    ══════════════════════════════════════════════ */
 (function initVisitorCounter() {
-  const COOLDOWN = 60 * 60 * 1000; // 1 hour
-  const LS_KEY = 'mi_last_visit';
-  const LS_COUNT_KEY = 'mi_visit_count';
-
   const numEl = document.getElementById('vcNum');
   const progressEl = document.getElementById('vcProgress');
   const statusEl = document.getElementById('vcStatusText');
@@ -420,43 +416,34 @@ document.getElementById('langToggle').addEventListener('click', toggleLang);
 
   function animateCount(target) {
     let current = 0;
-    const duration = 1400;
-    const step = target / (duration / 30);
+    const step = Math.max(1, Math.ceil(target / 60));
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      numEl.textContent = Math.round(current).toLocaleString();
+      numEl.textContent = current.toLocaleString();
       if (current >= target) clearInterval(timer);
-    }, 30);
+    }, 25);
 
     const pct = Math.min(target / 1000, 1);
-    const circumference = 163;
-    progressEl.style.strokeDashoffset = circumference - pct * circumference;
+    progressEl.style.strokeDashoffset = 163 - pct * 163;
   }
 
-  const now = Date.now();
-  const last = parseInt(localStorage.getItem(LS_KEY) || '0');
-  const shouldCount = (now - last) > COOLDOWN;
-  let storedCount = parseInt(localStorage.getItem(LS_COUNT_KEY) || '0');
+  const LS_KEY = 'mi_visit_count';
+  const LS_VISITED = 'mi_has_visited';
 
-  if (shouldCount) {
-    localStorage.setItem(LS_KEY, String(now));
-    storedCount += 1;
-    localStorage.setItem(LS_COUNT_KEY, String(storedCount));
+  // Get current count
+  let count = parseInt(localStorage.getItem(LS_KEY) || '0');
 
-    // Fire-and-forget image to trigger hits.sh increment (no CORS issue)
-    const img = new Image();
-    img.src = 'https://hits.sh/mohamed-ikich.netlify.app.svg?color=0ea5e9&t=' + now;
+  // Increment only if this browser hasn't visited before
+  if (!localStorage.getItem(LS_VISITED)) {
+    count += 1;
+    localStorage.setItem(LS_KEY, String(count));
+    localStorage.setItem(LS_VISITED, '1');
   }
 
-  // Display local count (minimum 1, show as X+ if modest)
-  const displayCount = Math.max(storedCount, 1);
-  animateCount(displayCount);
+  animateCount(count);
 
-  const mins = Math.round((COOLDOWN - (now - last)) / 60000);
   if (statusEl) {
-    statusEl.textContent = shouldCount
-      ? (currentLang === 'fr' ? 'Visite comptabilisée' : 'Counted your visit')
-      : (currentLang === 'fr' ? `Prochain comptage dans ~${Math.max(mins, 1)}min` : `Next count in ~${Math.max(mins, 1)}min`);
+    statusEl.textContent = currentLang === 'fr' ? 'Visiteurs uniques' : 'Unique visitors';
   }
 })();
 
